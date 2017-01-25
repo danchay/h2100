@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block extra_head %}
+    <link href="http://getbootstrap.com/examples/cover/cover.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #193d56;
+        }
+        .btn-link {
+        	color: #8faac7;
+        }
+        ul {
+        	list-style-type: none;
+        }
+    </style>
+{% endblock%}
+
+{% block content %}
+
+	<h1 class='cover-heading'> {{ title }}</h1>
+	<p class="lead">
+		<div class='col-sm-6 col-sm-offset-3'>
+			<form method='POST' action='.'>
+			{% csrf_token %}
+				<!-- <input name='url' type='text' placeholder='Shorten your url.'> -->
+				{{ form.as_p }}
+				<input class='btn btn-primary' type='submit' value='Shorten'>
+			</form>
+		</div>
+	</p>
+
+{% endblock %}

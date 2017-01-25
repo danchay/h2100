@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}
+  {{ object.shortcode }} | {{ block.super }}
+{% endblock %}
+
+{% block extra_head %}
+    <link href="http://getbootstrap.com/examples/cover/cover.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #193d56;
+        }
+        .btn-link {
+        	color: #8faac7;
+        }
+    </style>
+{% endblock%}
+
+
+{% block content %}
+<div class=''>
+
+	<h1>Success</h1>
+	<p>{{ object.url }}</p>
+
+	<!--<p>{{ object.get_short_url }}</p>-->
+	<p><a class='btn btn-primary btn-link' href='{{ object.get_short_url }}'>{{ object.get_short_url }}</a></p>
+
+
+	<a class='btn btn-primary' href="/shortener">+ New</a>
+
+</div>
+{% endblock %}
+
