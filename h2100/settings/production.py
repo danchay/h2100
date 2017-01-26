@@ -64,7 +64,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'h2100.urls'
 ROOT_HOSTCONF = 'h2100.hosts'
 DEFAULT_HOST = 'www'
-DEFAULT_REDIRECT_URL = "http://hackingto100.com"
+DEFAULT_REDIRECT_URL = "http://www.hackingto100.com"
 PARENT_HOST = "hackingto100.com"
 
 TEMPLATES = [
