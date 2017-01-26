@@ -25,7 +25,7 @@ SECRET_KEY = '1!3)52_eu&!5k*2j7z3e@ay2i9v=l0_qud2c29&@&zoeh!yqsv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['hackingto100.com', 'www.hackingto100.com']
+ALLOWED_HOSTS = ['hackingto100.com', 'www.hackingto100.com', 'h2100.herokuapp.com']
 
 
 # Application definition
