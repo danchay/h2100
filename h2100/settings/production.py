@@ -139,13 +139,25 @@ SHORTCODE_MAX = 16
 SHORTCODE_MIN = 4
 
 
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+
+# Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-    )
-MEDIA_URL= '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    os.path.join(PROJECT_ROOT, 'static'),
+)
+
+
+
+# STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'static'),
+#     )
+# MEDIA_URL= '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 
