@@ -134,18 +134,41 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL= '/media/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static')
-    )
-
 # If SHORTCODE variables are changed, migrate dbase because these change the models
 SHORTCODE_MAX = 16
 SHORTCODE_MIN = 4
+
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+    )
+MEDIA_URL= '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+
+# STATIC_ROOT is where files are collected to be served when going live
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.8/howto/static-files/
+# STATIC_ROOT = os.path.join(PROJECT_DIR, 'static_in_venv', 'static_root')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static', 'static_root')
+# STATIC_ROOT = "/var/www/example.com/static/"
+# Path also could be: os.path.join(os.path.dirname(BASE_DIR), 'static_in_env', 'static_root')
+
+# We put our files in STATICFILES_DIRS; could include ,'/var/www/static',
+# STATICFILES_DIRS = (
+#    os.path.join(BASE_DIR, 'static'),
+#    os.path.join(BASE_DIR, 'static', 'h2_static'),
+#     )
+
+# Media is where user-uploaded files go
+# MEDIA_URL= '/media/'
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.8/howto/static-files/
+# MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+
