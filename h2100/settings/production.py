@@ -90,12 +90,12 @@ WSGI_APPLICATION = 'h2100.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'h2100.db'),
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'h2100.db'),
+    }
+}
 
 # Update database configuration with $DATABASE_URL.
 import dj_database_url
