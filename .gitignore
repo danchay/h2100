@@ -7,6 +7,7 @@ h2100/settings/local.py
 migrations/
 
 staticfiles
+media
 .env
 Procfile.local
 old_settings.py
