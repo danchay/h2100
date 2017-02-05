@@ -14,9 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
 from django.conf.urls import include, url
-
+from django.conf.urls.static import static
+from django.conf import settings
 from django.contrib import admin
-from .settings import MEDIA_ROOT
+from .settings import MEDIA_URL, MEDIA_ROOT
+from .settings import STATIC_URL, STATIC_ROOT
 
 
 urlpatterns = [
@@ -24,6 +26,9 @@ urlpatterns = [
     url(r'^backend/', include(admin.site.urls)),
     url(r'^blog/', include('blog.urls')),
     url(r'^shortener/', include('shortener.urls')),
-    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': MEDIA_ROOT}),
+    # url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': MEDIA_ROOT}),
+] 
 
-]
+if settings.DEBUG:
+    urlpatterns += static(STATIC_URL, document_root=STATIC_ROOT)
+    urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
