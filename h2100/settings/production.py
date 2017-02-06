@@ -102,6 +102,11 @@ import dj_database_url
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 
+DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
+AWS_ACCESS_KEY='AKIAJQCDFYIIRWDUTZFA'
+AWS_SECRET_ACCESS_KEY='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'
+AWS_STORAGE_BUCKET_NAME='h2100'
+AWS_AUTO_CREATE_BUCKET=True
 
 # Password Validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators

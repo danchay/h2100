@@ -11,6 +11,7 @@ media
 .env
 Procfile.local
 old_settings.py
+*.db
 
 h2100-project.sublime-project
 h2100-project.sublime-workspace
