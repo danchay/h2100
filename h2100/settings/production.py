@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     # Third Party Apps
     'django_forms_bootstrap',
     'django_hosts',
+    'storages',
 
     # Local Apps
     'analytics',
@@ -102,11 +103,7 @@ import dj_database_url
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 
-DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
-AWS_ACCESS_KEY='AKIAJQCDFYIIRWDUTZFA'
-AWS_SECRET_ACCESS_KEY='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'
-AWS_STORAGE_BUCKET_NAME='h2100'
-AWS_AUTO_CREATE_BUCKET=True
+
 
 # Password Validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -155,9 +152,18 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-MEDIA_URL='/media/'
-MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 
+AWS_QUERYSTRING_AUTH = False
+AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET_NAME']
+MEDIA_URL = 'http://%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
+DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
+
+
+# MEDIA_URL='/media/'
+# MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
+# AWS_AUTO_CREATE_BUCKET=True
 
 
 # STATIC_URL = '/static/'
