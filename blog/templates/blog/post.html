@@ -13,7 +13,8 @@
             <br>
             <p>
             {% if single_post.image %}
-                <img src="/media/{{ single_post.image }}">
+               <!-- <img src="/media/{{ single_post.image }}"> -->
+               <img src="{{ single_post.images.url }}"
             {% endif %}
             </p>
         </ul>
