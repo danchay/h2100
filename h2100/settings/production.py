@@ -26,6 +26,16 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['hackingto100.com', 'www.hackingto100.com', 'h2100.herokuapp.com']
 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER= 'h2100email@gmail.com'
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+'''
+If using gmail, you will need to unlock Captcha to enable Django to send for you:
+https://accounts.google.com/displayunlockcaptcha
+'''
+
 
 # Application definition
 
@@ -45,7 +55,9 @@ INSTALLED_APPS = (
     # Local Apps
     'analytics',
     'blog',
+    'contact',
     'shortener',
+    'newsletter',
 )
 
 MIDDLEWARE_CLASSES = (

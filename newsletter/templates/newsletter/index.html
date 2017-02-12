@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+    {% block content %}
+    	<h1>{{ template_title }}</h1>
+
+    	<form method='POST' action=''> {% csrf_token %}
+    		{{ form.as_p }}
+    		<input type='submit' value='Sign up' />
+    	</form>
+
+    {% endblock %}
+
+
+<!-- {{ user }} and {{request.user }} are two context variables that do not need to be set in the view -->

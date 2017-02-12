@@ -6,6 +6,7 @@ from newsletter.views import index
 
 urlpatterns = [
    url(r'^$', index, name='index'),
+]
+
    # url(r'^add_post/', add_post, name='add_post)'),    
    # url(r'^(?P<slug>[\w|\-]+)/$', post, name='post'),
-]
