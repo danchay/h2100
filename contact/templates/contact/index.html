@@ -6,7 +6,7 @@
     	<form method='POST' action=''>{% csrf_token %}
     		{{ form.as_p }}
 
-    	{% if title != "Message sent. Thank you." %}
+    	{% if not "Message sent. Thank you." in title %}
     		<input type='submit' value='Send' />
     	{% endif %}
 

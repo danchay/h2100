@@ -18,10 +18,7 @@ def contact(request):
 	form_email = ''
 	form_full_name = ''
 	form_message = ''
-	context = {
-		'title': title,
-		'form': form
-		}
+
 	if form.is_valid():
 		form_email = form.cleaned_data.get("email")
 		form_full_name = form.cleaned_data.get("full_name")
@@ -41,9 +38,16 @@ def contact(request):
 		from_email, 
 		to_email, 
 		fail_silently=False)
-	context = {
-		'title': "Message sent. Thank you."
-	}
+
+	if form_email:
+		context = {
+			'title': "Message sent. Thank you." 
+			}
+	else:
+		context = {
+			'title': title,
+			'form': form
+		}
 
 
 	return render(request, "contact/index.html", context)
