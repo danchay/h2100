@@ -13,7 +13,7 @@ from django.core.mail import send_mail
 
 
 def contact(request):
-	title = "Send Us a Message"
+	title = "Send Me a Message"
 	form = ContactForm(request.POST or None)
 	form_email = ''
 	form_full_name = ''

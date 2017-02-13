@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block extra_head %}
+	<link rel="stylesheet" href="{% static 'contact/static/css/jumbotron-narrow.css' %}" type="text/css" />
+
+{% endblock extra_head %}
 
     {% block content %}
+    	<div class="jumbotron">
     	<h1>{{ title }}</h1><br />
 
     	<form method='POST' action=''>{% csrf_token %}
@@ -10,5 +16,6 @@
     		<input type='submit' value='Send' />
     	{% endif %}
 
-
+    	</form>
+    	</div>
     {% endblock %}
