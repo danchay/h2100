@@ -1,12 +1,21 @@
 {% extends 'base.html' %}
-
+{% load static %}
+{% block head_title %} | Newsletter {% endblock %}
     {% block content %}
+       {% load bootstrap_tags %}
     	<h1>{{ template_title }}</h1>
 
+    	<div class="jumbotron">
+
     	<form method='POST' action=''> {% csrf_token %}
-    		{{ form.as_p }}
-    		<input type='submit' value='Sign up' />
+    		{{ form | as_bootstrap }}
+
+    	{% if not "Thank you" in template_title %}
+    		<input class="btn btn-lg btn-primary" type='submit' value='Sign up' />
+    	{% endif %}
+
     	</form>
+    	</div>
 
     {% endblock %}
 

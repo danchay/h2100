@@ -17,7 +17,7 @@ from .forms import SignUpForm
 # 	context_dict = { 'entry': 'Hello Woorld.'}
 # 	return HttpResponse(t.render(context_dict))
 
-def index(request):
+def newsletter(request):
 	title = "Newsletter"
 	# if request.user.is_authenticated():
 	# 	title = "Newsletter: %s" %(request.user)
@@ -26,10 +26,7 @@ def index(request):
 
 	form = SignUpForm(request.POST or None)
 
-	context = {
-		"template_title": title,
-		"form": form
-	}
+
 	if form.is_valid():
 		instance = form.save(commit=False)
 		full_name = form.cleaned_data.get("full_name")
@@ -38,11 +35,17 @@ def index(request):
 		# if not instance.full_name:
 		# 	instance.full_name = "Anonymous"
 		instance.save() 
-		print(instance.email + instance.timestamp)
+		print(instance.email + str(instance.timestamp))
 
-	context = {
-		"template_title": "Thank you"
-	}
+	if request.POST:
+		context = {
+			"template_title": "Thank you"
+		}
+	else:
+		context = {
+			"template_title": title,
+			"form": form
+		}
 
 	return render(request, "newsletter/index.html", context)
 
