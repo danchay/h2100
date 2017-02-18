@@ -37,7 +37,7 @@ def newsletter(request):
 		instance.save() 
 		print(instance.email + str(instance.timestamp))
 
-	if request.POST:
+	if form.is_valid():
 		context = {
 			"template_title": "Thank you"
 		}

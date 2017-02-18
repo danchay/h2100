@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap_tags %}
+{% block head_title %} | Healthspan {% endblock %}
+
+    {% block content %}
+    <div class="row">
+    	<div class="col-sm-6 col-sm-offset-3">
+
+
+        <label for="id_title" class="lead">Healthspan</label>
+        <p>
+            Even as we see medical remedies that deliver so many people longer lives, in the US we're also seeing high levels of chronic disease and especially in older age classes we're seeing life-lengthening measures that still result in miserable conditions. Life prolonged, but clearly failure to thrive. I'm most interested in lifespan with good health, <em>i.e.</em>, healthspan.
+        </p>
+
+        <p>
+            By "healthspan" I'm looking at maximizing liveliness into later years. Looking positively, I'm interested to prolong strength, mobility, creativity, and mental acuity. I'd prefer to avoid disease, immobilization, depression, and sluggishness. I'm interested in lifestyle choices and behaviors for which there is promising evidence to these ends. 
+        </p>
+
+        <p>
+            At this point, excercise (training), optimal weight and nutrition (eating), good sleep, and learning seem like categories of engagement offering most evidence and promise for shaping healthspan positively. I've been having fun digesting available evidence. To convert what I think I have learned into better healthspan-related personal results equally has been a fun challenge. </p>
+        <p>
+            I'm still learning, it's all an experiment of n=1, but, among other things, sharing here will give me a fun target around which to grow <a href="{% url 'about' %}">my python</a>. 
+        </p>
+
+        <div class="col-sm-6 col-sm-offset-4">
+        <br /><br />
+        <p class="pull-right">-- Dan Chay</p>
+        </div><!-- sig col -->
+        
+        </div><!-- body col -->
+    </div><!-- row -->
+
+    {% endblock %}

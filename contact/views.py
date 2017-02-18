@@ -33,11 +33,15 @@ def contact(request):
 		form_message 
 		)
 
+	html_message= """
+		<h1>Hacking to 100</h1>
+		"""
 	send_mail(subject, 
 		contact_message, 
 		from_email, 
 		to_email, 
-		fail_silently=False)
+		html_message = html_message,
+		fail_silently=True)
 
 	if form_email:
 		context = {
@@ -50,6 +54,6 @@ def contact(request):
 		}
 
 
-	return render(request, "contact/index.html", context)
+	return render(request, "contact/contact.html", context)
 
 

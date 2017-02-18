@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap_tags %}
+{% block head_title %} | About {% endblock %}
+
+    {% block content %}
+    <div class="row">
+    	<div class="col-sm-6 col-sm-offset-3">
+
+
+        <label for="id_title" class="lead">About this site</label>
+        <p>This site started first as an experiment in learning python. I thought I'd create a site on which to 
+        grow my learning in python, which could serve double duty as a place to share my musings about "<a href="{% url 'healthspan' %}">healthspan</a>"
+        and related topics.</p>
+
+        <p>Born in 1958, a beneficiary of lively, positive family circumstances, now, short of falling victim to random catastrophe, I think
+        I have a reasonable chance to hack my way into a healthy healthspan of 100 years, a nice round number. That would be fun, I think, and something worth of a good try. Worth a good try because failing health seems quite unattractive to me, and likely more expensive, to boot.</p>
+
+        <p>My challenge is to see what I can do in these <strong>{{ days }} days</strong> remaining until my 100th b-day. That would be about <strong>{{ weeks }} weeks</strong>, or about <strong>{{ months }} months</strong>, or roughly <strong>{{ years }} years</strong>; and which would be about <strong>{{ mars_years }} mars years</strong> (at 668.6 sols/mars year).</p>
+
+        <div class="col-sm-6 col-sm-offset-4">
+        <br /><br />
+        <p class="pull-right">-- Dan Chay</p>
+        </div>
+        
+        </div>
+        </div>
+    </div>
+    {% endblock %}

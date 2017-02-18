@@ -51,6 +51,7 @@ INSTALLED_APPS = (
     'django_forms_bootstrap',
     'django_hosts',
     'storages',
+    'crispy_forms',
 
     # Local Apps
     'analytics',
@@ -59,6 +60,8 @@ INSTALLED_APPS = (
     'shortener',
     'newsletter',
 )
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 MIDDLEWARE_CLASSES = (
     'django_hosts.middleware.HostsRequestMiddleware',
