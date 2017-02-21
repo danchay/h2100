@@ -2,6 +2,26 @@ body {
 	padding-top: 65px !important;
 }
 
+.navbar-inverse {
+    background-color: #008cba;
+    /* border-color: #006687; */
+}
+
+.navbar-inverse .navbar-brand {
+    color: #ffffff;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #ffffff;
+}
+
+.container-fluid {
+    padding-right: 0px; 
+    padding-left: 0px; 
+    margin-right: auto;
+    margin-left: auto;
+}
+
 @media screen and (min-width: 768px)
 .jumbotron h1, .jumbotron .h1 {
     font-size: 48px !important;
