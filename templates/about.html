@@ -4,26 +4,30 @@
 {% block head_title %} | About {% endblock %}
 
     {% block content %}
+    {% block jumbotron %}
+
+    <div class="jumbotron">
+    <div class="container">
     <div class="row">
-    	<div class="col-sm-6 col-sm-offset-3">
+    	<div class="col-sm-9 col-sm-offset-1">
 
 
-        <label for="id_title" class="lead">About this site</label>
+        <h1>About this site</h1>
         <p>This site started first as an experiment in learning python. I thought I'd create a site on which to 
         grow my learning in python, which could serve double duty as a place to share my musings about "<a href="{% url 'healthspan' %}">healthspan</a>"
         and related topics.</p>
 
         <p>Born in 1958, a beneficiary of lively, positive family circumstances, now, short of finding myself trumped by random catastrophe, I think I have a reasonable chance to hack my way into a healthy healthspan of 100 years, a nice round number. That would be fun, I think, and something worth a good try. Worth a good try because failing health seems quite unattractive to me, and likely more expensive, to boot.</p>
 
-        <p>My challenge is to see what I can do in these <strong>{{ days }} days</strong> remaining until my 100th b-day. That would be about <strong>{{ weeks }} weeks</strong>, or about <strong>{{ months }} solar months</strong>, ({{ lunar_months }} lunar months), or roughly <strong>{{ years }} years</strong>. Or, in conisideration of retiring to mars, that would be about <strong>{{ mars_years }} mars years</strong> (at 668.6 sols/mars year).</p>
+        <p>My challenge is to see what I can do in these <strong>{{ days }} days</strong> remaining until my 100th b-day. That time remaining would be about <strong>{{ weeks }} weeks</strong>, or about <strong>{{ months }} solar months</strong>, ({{ lunar_months }} lunar months), or roughly <strong>{{ years }} years</strong>. Or, in conisideration of retiring to Mars, that would be about <strong>{{ mars_years }} Mars years</strong> (at 668.6 sols/Mars year).</p>
 
-        <p>In the spirit of noteworty markers in time, my wife, Heidi, and I became as-married at Beijing University about <strong>{{ fm_since_uc_married }} full moons</strong> ago, which we officialized on a full moon day with family and friends <strong>{{ fm_since_of_married }} full moons</strong> ago. That would be <strong>{{ bm_since_of_married }} blue moons</strong> past.</p>
+        <p>In the spirit of noteworthy markers in time, my wife, Heidi, and I became as-married at Beijing University about <strong>{{ fm_since_uc_married }} full moons</strong> ago, which we officialized on a full moon day with family and friends <strong>{{ fm_since_of_married }} full moons</strong> ago. That would be <strong>{{ bm_since_of_married }} blue moons</strong> past.</p>
 
         <p> These are lunarversaries we have to look forward to during the next year.</p>
             <table>
                 <tr>
                     {% for date in  moon_list  %}<td style="padding-left:30px;">&nbsp;</td>
-                    <td style="padding-bottom:5px; font-size:small"> {{ date }}</td> </tr>
+                    <td style="padding-bottom:5px; font-size:medium"> {{ date }}</td> </tr>
                     {% endfor %}
                 
             </table>
@@ -32,7 +36,10 @@
         <p class="pull-right">-- Dan Chay</p>
         </div>
         
-        </div>
-        </div>
-    </div>
+        </div><!-- col -->
+        </div><!-- row -->
+    </div><!-- container -->
+    </div><!-- jumbotron -->
+
+    {% endblock %}
     {% endblock %}

@@ -41,6 +41,8 @@ https://accounts.google.com/displayunlockcaptcha
 
 INSTALLED_APPS = (
     'django.contrib.admin',
+    'django.contrib.sites',
+    'registration', # Should be immediately above 'django.contrib.auth'
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -62,6 +64,14 @@ INSTALLED_APPS = (
 )
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+# Django-registration-redux settings
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = True
+LOGIN_REDIRECT_URL = '/'
+#LOGIN_REDIRECT_URL = '/accounts/profile/'
+# REGISTRATION_DEFAULT_FROM_EMAIL
+# REGISTRATION_EMAIL_HTML
+SITE_ID = 1
 
 MIDDLEWARE_CLASSES = (
     'django_hosts.middleware.HostsRequestMiddleware',

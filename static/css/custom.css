@@ -1,0 +1,12 @@
+body {
+	padding-top: 65px !important;
+}
+
+@media screen and (min-width: 768px)
+.jumbotron h1, .jumbotron .h1 {
+    font-size: 48px !important;
+} 
+
+.jumbotron p {
+	font-weight: 300 !important;
+}

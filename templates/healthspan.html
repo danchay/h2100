@@ -2,13 +2,22 @@
 {% load static %}
 {% load bootstrap_tags %}
 {% block head_title %} | Healthspan {% endblock %}
+{% block style %} 
+/*.jumbotron {
+    background-color: #155a13 !important;
+} */
+{% endblock %}
 
     {% block content %}
+    {% block jumbotron %}
+
+    <div class="jumbotron">
+    <div class="container">
     <div class="row">
-    	<div class="col-sm-6 col-sm-offset-3">
+    	<div class="col-sm-9 col-sm-offset-1">
 
-
-        <label for="id_title" class="lead">Healthspan</label>
+        <h1>Healthspan</h1>
+        <!--<label for="id_title" class="lead">Healthspan</label>-->
         <p>
             Even as we see medical remedies that deliver so many people longer lives, in the US we're also seeing high levels of chronic disease, and especially in weaker, older ages we're seeing life-lengthening measures that still result in miserable conditions. Life prolonged, and failure to thrive.</p>
         
@@ -35,6 +44,8 @@
         </div><!-- sig col -->
         
         </div><!-- body col -->
+        </div><!-- container -->
+        </div><!-- jumbotron -->
     </div><!-- row -->
-
+    {% endblock %}
     {% endblock %}

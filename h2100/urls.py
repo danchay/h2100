@@ -25,6 +25,7 @@ from . import views
 urlpatterns = [
     # url(r'^$', include('blog.urls')),
     url(r'^$', views.healthspan, name="healthspan"),
+    url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^backend/', include(admin.site.urls)),
     url(r'^blog/', include('blog.urls')),
     url(r'^shortener/', include('shortener.urls')),
