@@ -9,6 +9,7 @@ class Post(models.Model):
     body_text = models.TextField()
     created_date = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+    publish = models.BooleanField(default=False)
     tag = models.CharField(max_length=20, blank=True, null=True)
     image=models.ImageField(upload_to="images", blank=True, null=True)
     views=models.IntegerField(default=0)
