@@ -35,6 +35,9 @@ EMAIL_USE_TLS = True
 If using gmail, you will need to unlock Captcha to enable Django to send for you:
 https://accounts.google.com/displayunlockcaptcha
 '''
+ADMINS = (
+        ("Dan Chay", "danchay@gmail.com"),
+    )
 
 
 # Application definition

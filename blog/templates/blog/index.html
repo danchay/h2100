@@ -1,29 +1,38 @@
 {% extends 'base.html' %}
 
     {% block content %}
-    <div class="row">
-        <div class="col-md-8">
-        {% if latest_posts %}
-            <h4>Latest Posts</h4>
-            <ul>
-                {% for post in latest_posts %}
-                    <h3><a href="/blog/{{ post.slug }}">{{ post.title }}</a></h3>
-                    <p><em>{{ post.created_date }}</em></p>
-                    <p>{{ post.body_text }}</p>
-                    <br>
-                {% endfor %}
-            </ul>
-        {% endif %}
-        </div>
-        <div class="col-md-4">
-            <h4>Most Popular Posts</h4>
-            <ul>
-                {% for popular_post in popular_posts %}
-                    <li><a href="/blog/{{ popular_post.slug }}">{{ popular_post.title }}</a></li>
-                {% endfor %}
-            </ul>
+        {% block jumbotron %}
+
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-7 col-sm-offset-1">
+
+                    {% if latest_posts %}
+                        <h3>Latest Posts</h3>
+                        <ul>
+                            {% for post in latest_posts %}
+                                <h3><a href="/blog/{{ post.slug }}">{{ post.title }}</a></h3>
+                                <p><em>{{ post.created_date }}</em></p>
+                                <p>{{ post.body_text }}</p>
+                                <br>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+                <div class="col-md-3 pull-right">
+                    <h4>Most Popular Posts</h4>
+                    <ul>
+                        {% for popular_post in popular_posts %}
+                            <li><a href="/blog/{{ popular_post.slug }}">{{ popular_post.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 
+    {% endblock %}
     {% endblock %}
 

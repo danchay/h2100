@@ -9,23 +9,26 @@
 {% block head_title %} | Contact {% endblock %}
 
     {% block content %}
+    {% block jumbotron %}
 
-    	<div class = 'row'>
-    	<div class="col-sm-6 col-sm-offset-3">
-    	<div id="div_id_title" class="form-group">
-    	   <label for="id_title" class="lead">{{ title }}</label>
+    <div class="jumbotron">
+        <div class="container">
+    	   <div class = 'row'>
+        	   <div class="col-sm-6 col-sm-offset-3">
+        	       <div id="div_id_title" class="form-group">
+        	           <label for="id_title" class="lead">{{ title }}</label>
 
-        
-    	<form id="post_form" method='POST' action=''>{% csrf_token %}
-    		{{ form | crispy }}
+        	           <form id="post_form" method='POST' action=''>{% csrf_token %}
+        		          {{ form | crispy }}
 
-    	{% if not "Message sent. Thank you." in title %}
-    		<input class ="btn btn-primary" type='submit' value='Send' />
-    	{% endif %}
-
-    	</form>
-        </div>
+        	               {% if not "Message sent. Thank you." in title %}
+        		              <input class ="btn btn-primary" type='submit' value='Send' />
+        	               {% endif %}
+        	           </form>
+                    </div>
+        	   </div>
     	</div>
-    	</div>
+    </div>
 
+    {% endblock %}
     {% endblock %}
