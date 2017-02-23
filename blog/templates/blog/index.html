@@ -6,15 +6,27 @@
     <div class="jumbotron">
         <div class="container">
             <div class="row">
-                <div class="col-sm-7 col-sm-offset-1">
+                <div class="col-sm-8 ">
 
                     {% if latest_posts %}
-                        <h3>Latest Posts</h3>
+                        <h1>{{ category }}</h1>
                         <ul>
                             {% for post in latest_posts %}
-                                <h3><a href="/blog/{{ post.slug }}">{{ post.title }}</a></h3>
-                                <p><em>{{ post.created_date }}</em></p>
-                                <p>{{ post.body_text }}</p>
+                                <h2><a href="/blog/{{ post.slug }}">{{ post.title }}</a></h2>
+                                <p>
+                                    <span style="padding-left:20px;"><em><small>{{ date }}</small></em></span>
+                                </p>
+                            {% if post.image %}
+                                <p>
+                                    <!-- <img src="/media/{{ single_post.image }}"> -->
+                                    <img src="{{ post.image.url }}" class="img-responsive img-thumbnail" width="600" height="450 ">
+                                </p><br />
+                            {% endif %}
+                                
+                                <p>
+                                    {{ post.header_text }}<br />
+                                    <a class="pull-right" href="/blog/{{ post.slug }}">Read more...</a>
+                                </p>
                                 <br>
                             {% endfor %}
                         </ul>
@@ -29,6 +41,7 @@
                         {% endfor %}
                     </ul>
                 </div>
+
             </div>
         </div>
     </div>

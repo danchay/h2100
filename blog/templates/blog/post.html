@@ -2,33 +2,54 @@
 
 
     {% block content %}
-    <div class="row">
-        <div class="col-md-8">
-        <h2>{{ single_post.title }}</h2>
+        {% block jumbotron %}
 
-        <ul>
-            <p><em>{{ single_post.created_date }}</em></p>
-            <p>{{ single_post.body_text }}</p>
-            <p>Tag: {{ single_post.tag }}</p>
-            <br>
-            <p>
-            {% if single_post.image %}
-               <!-- <img src="/media/{{ single_post.image }}"> -->
-               <img src="{{ single_post.image.url }}" class="img-responsive">
-            {% endif %}
-            </p>
-        </ul>
-            <p>Return <a href="/blog">home</a>.</p><br/>
-        </div>
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-1">
+                    <h1>{{ single_post.title }}</h1>
 
-        <div class="col-md-4">
-        <h4>Popular Posts</h4>
-        <ul>
-            {% for popular_post in popular_posts %}
-                <li><a href="/blog/{{ popular.slug }}">{{ popular_post.title }}</a></li>
-            {% endfor %}
-        </ul>
+                    <p>
+                        <span style="padding-left:20px;"><em><small>{{ date }}</small></em></span>
+                    </p> 
+
+                    {% if single_post.header_text %}
+                        <p>
+                        {{ single_post.header_text }}
+                        </p>
+                    {% endif %}
+
+                    <p>
+                        {% if single_post.image %}
+                           <!-- <img src="/media/{{ single_post.image }}"> -->
+                           <img src="{{ single_post.image.url }}" class="img-responsive">
+                        {% endif %}
+                    </p><br />
+                    <p>
+                        {{ single_post.body_text }}
+                    </p>
+
+                    <p class="pull-right">
+                        Tag: {{ single_post.tag }}
+                    </p><br />
+            
+                    <p>
+                        Return <a href="/blog">home</a>.
+                    </p><br/>
+                </div>
+
+                    <div class="col-sm-2 pull-right">
+                        <h4>Popular Posts</h4>
+                        <ul>
+                            {% for popular_post in popular_posts %}
+                                <li><a href="/blog/{{ popular_post.slug }}">{{ popular_post.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+            </div>
         </div>
     </div>
 
+    {% endblock %}
     {% endblock %}

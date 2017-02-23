@@ -28,8 +28,8 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         Training <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{% url 'about' %}">About</a></li>
-                            <li><a href="{% url 'contact' %}">Contact</a></li>
+                            <li><a href="{% url 'training' %}">Training</a></li>
+                           
 
                         </ul>
                         </li>
@@ -38,8 +38,8 @@
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         Eating <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{% url 'about' %}">About</a></li>
-                            <li><a href="{% url 'contact' %}">Contact</a></li>
+                            <li><a href="{% url 'eating' %}">Eating</a></li>
+                            
 
                         </ul>
                         </li>
@@ -48,8 +48,8 @@
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         Sleeping <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{% url 'about' %}">About</a></li>
-                            <li><a href="{% url 'contact' %}">Contact</a></li>
+                            <li><a href="{% url 'sleeping' %}">Sleeping</a></li>
+
 
                         </ul>
                         </li>
@@ -57,25 +57,25 @@
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         Learning <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{% url 'about' %}">About</a></li>
-                            <li><a href="{% url 'contact' %}">Contact</a></li>
+                            <li><a href="{% url 'learning' %}">Learning</a></li>
                         </ul>
                         </li>
 <!-- Next Dropdown -->
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         Other <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
+                            <li><a href="{% url 'other' %}">Other</a></li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Reference</li>
                             <li><a href="{% url 'about' %}">About</a></li>
                             <li><a href="{% url 'contact' %}">Contact</a></li>
-                            <li class="divider"></li>
-                            <li class="dropdown-header">Under construction</li>
                             {% if request.user.is_authenticated %}
                                 <li><a href="{% url 'auth_logout' %}">Logout</a></li>
                             {% else %}
                                 <li><a href="{% url 'auth_login' %}">Login</a></li>
                             {% endif %}
-                            <li><a href="/blog">Blog</a></li>
-                            <li><a href="/blog/add_post">Add Post</a></li>
+                            <!--<li><a href="/blog">Blog</a></li>
+                            <li><a href="/blog/add_post">Add Post</a></li>-->
                         </ul>
                         </li>
                     </ul>

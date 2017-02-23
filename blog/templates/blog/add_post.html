@@ -1,13 +1,24 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %} 
 
-{% block content %}
-{% load bootstrap_tags %}
-<h2>Add a Post</h2>
-<form id="post_form" method="post" action="/blog/add_post/" enctype="multipart/form-data">
-	{% csrf_token %}
-			{{ form | as_bootstrap }}
+    {% block content %}
+        {% block jumbotron %}
 
-	<input type="submit" name="submit" value="Create Post" class="btn btn-primary">
-</form>
-<br>
-{% endblock %}
+		    <div class="jumbotron">
+		        <div class="container">
+		            <div class="row">
+		                <div class="col-sm-8 col-sm-offset-1">
+							<h1>Add a Post</h1>
+							<form id="post_form" method="post" action="/blog/add_post/" enctype="multipart/form-data">{% csrf_token %}
+								{{ form | crispy }}
+
+								<input type="submit" name="submit" value="Create Post" class="btn btn-primary">
+							</form><br />
+						</div>
+					</div>
+				</div>
+			</div>
+
+		{% endblock %}
+	{% endblock %}

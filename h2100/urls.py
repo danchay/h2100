@@ -19,12 +19,12 @@ from django.conf import settings
 from django.contrib import admin
 from .settings import MEDIA_URL
 from .settings import STATIC_URL, STATIC_ROOT
-from . import views
+from . import views 
+
 
 
 urlpatterns = [
-    # url(r'^$', include('blog.urls')),
-    url(r'^$', views.healthspan, name="healthspan"),
+    url(r'^$', include('blog.urls')),
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^backend/', include(admin.site.urls)),
     url(r'^blog/', include('blog.urls')),
@@ -32,7 +32,7 @@ urlpatterns = [
     url(r'^newsletter/', include('newsletter.urls')),
     url(r'^contact/', include('contact.urls')),
     url(r'^about/', views.about, name="about"),
-    url(r'^healthspan/', views.healthspan, name="healthspan"),
+    # url(r'^healthspan/', views.healthspan, name="healthspan"),
     # url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': MEDIA_ROOT}),
 ] 
 
