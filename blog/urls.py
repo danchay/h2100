@@ -20,7 +20,7 @@ from blog.views import (
 
 
 urlpatterns = [
-	url(r'^$', index, name='index'),
+    url(r'^$', index, name='index'),
 	# url(r'^add_post/$', add_post, name='add_post'),
 	# url(r'^(?P<slug>[\w|\-]+)/edit/$', update_post, name="edit"),	
 	# url(r'^(?P<slug>[\w|\-]+)/delete/$', delete_post),  
