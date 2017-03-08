@@ -1,6 +1,14 @@
-from django.shortcuts import render
 from datetime import *
 from .utilities.moon.moon import fm_series, flmoons_since
+
+from urllib import parse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render_to_response, redirect, render 
+from django.template import Context, loader, RequestContext
+from django.db.models import Q
+
+from blog.models import Post 
 
 
 
@@ -45,7 +53,48 @@ def about(request):
 		}
 	return render(request, "about.html", context )
 
-def healthspan(request):
-	context = {}
-	return render(request, "healthspan.html", context)
+def get_popular_posts():
+    popular_posts = Post.objects.order_by('-views')[:5]
+    return popular_posts
 
+def index(request):
+    latest_posts = Post.objects.all().order_by('-created_date')[:10]
+
+
+    for post in latest_posts:
+        date = post.created_date.strftime('%a, %d %b %Y')
+
+
+    paginator = Paginator(latest_posts, 8)
+    queryset_list = Post.objects.all()
+    query = request.GET.get("q")
+    if query:
+        queryset_list = queryset_list.filter(
+            Q(title__icontains=query) |
+            Q(tag__icontains=query)
+            ).distinct()
+        paginator = Paginator(queryset_list, 8)
+        category = "Search Results"
+
+    
+    page_request_var = "page"
+    page = request.GET.get(page_request_var)
+    try:
+        queryset = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        queryset = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        queryset = paginator.page(paginator.num_pages)
+
+    t = loader.get_template('blog/index.html')
+    context_dict = {
+        'latest_posts': queryset,
+        'popular_posts': get_popular_posts(),
+        'date': date,
+        'category': 'Hacking to 100',
+        'page_request_var': page_request_var,
+    }
+    c = Context(context_dict)
+    return HttpResponse(t.render(c))

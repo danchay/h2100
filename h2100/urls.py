@@ -26,8 +26,7 @@ from blog import views as blog_views
 
 
 urlpatterns = [
-    url(r'^$', blog_views.index, name="home"),
-    # url(r'^$', blog_views.index, name='index'),
+    url(r'^$', views.index, name="home"),
     url(r'^blog/', include('blog.urls', namespace='blog')),
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^backend/', include(admin.site.urls)),

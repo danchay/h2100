@@ -101,47 +101,7 @@ def other(request):
 
 
 
-def index(request):
-    latest_posts = Post.objects.all().order_by('-created_date')[:10]
 
-
-    for post in latest_posts:
-        date = post.created_date.strftime('%a, %d %b %Y')
-
-
-    paginator = Paginator(latest_posts, 8)
-    queryset_list = Post.objects.all()
-    query = request.GET.get("q")
-    if query:
-        queryset_list = queryset_list.filter(
-            Q(title__icontains=query) |
-            Q(tag__icontains=query)
-            ).distinct()
-        paginator = Paginator(queryset_list, 8)
-        category = "Search Results"
-
-    
-    page_request_var = "page"
-    page = request.GET.get(page_request_var)
-    try:
-        queryset = paginator.page(page)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        queryset = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-        queryset = paginator.page(paginator.num_pages)
-
-    t = loader.get_template('blog/index.html')
-    context_dict = {
-        'latest_posts': queryset,
-        'popular_posts': get_popular_posts(),
-        'date': date,
-        'category': 'Hacking to 100',
-        'page_request_var': page_request_var,
-    }
-    c = Context(context_dict)
-    return HttpResponse(t.render(c))
 
 
 def post(request, slug):

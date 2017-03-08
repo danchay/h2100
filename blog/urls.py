@@ -3,7 +3,7 @@ from django.conf.urls import url
 # is added to other projects.
 from blog.views import (
 	post,
-	index, 
+	# index, 
 	# add_post,
 	# update_post,
 	# delete_post, 
