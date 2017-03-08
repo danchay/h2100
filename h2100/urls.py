@@ -24,10 +24,10 @@ from . import views
 
 
 urlpatterns = [
-    url(r'^$', include('blog.urls')),
+    url(r'^$', include('blog.urls', namespace='blog')),
+    url(r'^blog/', include('blog.urls', namespace='blog')),
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^backend/', include(admin.site.urls)),
-    url(r'^blog/', include('blog.urls', namespace='blog')),
     url(r'^shortener/', include('shortener.urls')),
     url(r'^newsletter/', include('newsletter.urls')),
     url(r'^contact/', include('contact.urls')),
