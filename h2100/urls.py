@@ -20,13 +20,13 @@ from django.contrib import admin
 from .settings import MEDIA_URL
 from .settings import STATIC_URL, STATIC_ROOT
 from . import views
-from blog import urls as blog_urls
+from blog import views as blog_views 
 
 
 
 
 urlpatterns = [
-    url(r'^$', include('blog.urls')),
+    url(r'^$', blog_views.index, name="index"),
     # url(r'^$', blog_views.index, name='index'),
     url(r'^blog/', include('blog.urls', namespace='blog')),
     url(r'^accounts/', include('registration.backends.default.urls')),
