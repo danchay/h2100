@@ -5,6 +5,13 @@
 
     <div class="jumbotron">
         <div class="container">
+
+        <div class="col-md-3 pull-right">
+            <form method='GET' action=''>
+                <input type='text' name='q' placeholder='Search titles and tags' value='{{ request.GET.q }}' />
+                <input type='submit' value='Search' />
+            </form><br />
+        </div>
             <div class="row">
                 <div class="col-sm-8 ">
 
@@ -13,6 +20,7 @@
                         <ul>
                             {% for post in latest_posts %}
                                 <h2><a href="/blog/{{ post.slug }}">{{ post.title }}</a></h2>
+
                                 <p>
                                     <span style="padding-left:20px;"><em><small>{{ date }}</small></em></span>
                                 </p>
@@ -42,9 +50,31 @@
                     </ul>
                 </div>
 
+                <div class="col-md-3 pull-right"><h4>Email:</h4>
+                <address> <a href="mailto:h2100email@gmail.com">Dan Chay</a></address>
+                </div>
+
             </div>
-        </div>
+            <div class="pagination">
+                <span class="step-links">
+                    {% if latest_posts.has_previous %}
+                        <a href="?{{ page_request_var }}={{ latest_posts.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ latest_posts.number }} of {{ latest_posts.paginator.num_pages }}.
+                    </span>
+
+                    {% if latest_posts.has_next %}
+                        <a href="?{{ page_request_var }}={{ latest_posts.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Next</a>
+                    {% endif %}
+                </span>
+            </div>
+            </div>
+
+
     </div>
+
 
     {% endblock %}
     {% endblock %}

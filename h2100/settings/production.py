@@ -189,9 +189,7 @@ MEDIA_URL = 'http://%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
 DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
 
 
-# MEDIA_URL='/media/'
-# MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
-# AWS_AUTO_CREATE_BUCKET=True
+
 
 
 # STATIC_URL = '/static/'

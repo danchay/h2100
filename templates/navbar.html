@@ -16,19 +16,19 @@
                         <span class="icon-bar"></span>
                     </button>
                     <img class="navbar-brand" src="{% static 'img/favicon-32x32.png' %}" />&nbsp;
-                    <a class="navbar-brand" href="{% url 'healthspan' %}">Hacking To 100: {% nights %} <span style="font-size: small">days pending.</span>    </a> 
+                    <a class="navbar-brand" href="{% url 'blog:index' %}">Hacking To 100: {% nights %} <span style="font-size: small">days pending.</span>    </a> 
 
                 </div>
 
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                    <li><a href="{% url 'healthspan' %}">Healthspan</a></li>
+                    <li><a href="{% url 'blog:healthspan' %}">Healthspan</a></li>
 <!-- Dropdown -->
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         Training <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{% url 'training' %}">Training</a></li>
+                            <li><a href="{% url 'blog:training' %}">Training</a></li>
                            
 
                         </ul>
@@ -38,7 +38,7 @@
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         Eating <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{% url 'eating' %}">Eating</a></li>
+                            <li><a href="{% url 'blog:eating' %}">Eating</a></li>
                             
 
                         </ul>
@@ -48,7 +48,7 @@
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         Sleeping <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{% url 'sleeping' %}">Sleeping</a></li>
+                            <li><a href="{% url 'blog:sleeping' %}">Sleeping</a></li>
 
 
                         </ul>
@@ -57,14 +57,14 @@
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         Learning <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{% url 'learning' %}">Learning</a></li>
+                            <li><a href="{% url 'blog:learning' %}">Learning</a></li>
                         </ul>
                         </li>
 <!-- Next Dropdown -->
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         Other <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{% url 'other' %}">Other</a></li>
+                            <li><a href="{% url 'blog:other' %}">Other</a></li>
                             <li class="divider"></li>
                             <li class="dropdown-header">Reference</li>
                             <li><a href="{% url 'about' %}">About</a></li>

@@ -13,7 +13,11 @@
 							<form id="post_form" method="post" action="/blog/add_post/" enctype="multipart/form-data">{% csrf_token %}
 								{{ form | crispy }}
 
-								<input type="submit" name="submit" value="Create Post" class="btn btn-primary">
+								{% if instance %}
+									<input type="submit" name="submit" value="Update" class="btn btn-primary">
+								{% else %}
+									<input type="submit" name="submit" value="Create Post" class="btn btn-primary">
+								{% endif %}
 							</form><br />
 						</div>
 					</div>
