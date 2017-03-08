@@ -66,9 +66,11 @@ def index(request):
 
 
     paginator = Paginator(latest_posts, 8)
-    queryset_list = Post.objects.all()
+    queryset_list = Post.objects.all().order_by('-created_date')
+
     for post in queryset_list:
-    	date = post.created_date.strftime('%a, %d %b %Y')
+    	date = post.created_date.strftime('%a, %d %b %Y')   
+
     query = request.GET.get("q")
     if query:
         queryset_list = queryset_list.filter(
