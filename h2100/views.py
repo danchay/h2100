@@ -88,7 +88,7 @@ def index(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         queryset = paginator.page(paginator.num_pages)
 
-    t = loader.get_template('blog/index.html')
+    t = loader.get_template('index.html')
     context_dict = {
         'latest_posts': queryset,
         'popular_posts': get_popular_posts(),

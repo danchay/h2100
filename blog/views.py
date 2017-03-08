@@ -55,7 +55,8 @@ def prepare_posts_by_category(request, category, cat):
         # If page is out of range (e.g. 9999), deliver last page of results.
         queryset = paginator.page(paginator.num_pages)    
 
-    template_name = 'blog/index.html'
+    # template_name = 'blog/index.html'
+    template_name = 'index.html'
     context_dict = {
         'latest_posts': queryset,
         'popular_posts': get_popular_posts(),
