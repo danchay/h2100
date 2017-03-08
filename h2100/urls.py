@@ -24,7 +24,7 @@ from . import views
 
 
 urlpatterns = [
-    url(r'^$', include('blog.urls', namespace='blog')),
+    url(r'^$', include('blog.urls')),
     url(r'^blog/', include('blog.urls', namespace='blog')),
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^backend/', include(admin.site.urls)),
