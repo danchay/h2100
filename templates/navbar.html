@@ -72,8 +72,10 @@
                             <li><a href="{% url 'contact' %}">Contact</a></li>
                             {% if request.user.is_authenticated %}
                                 <li><a href="{% url 'auth_logout' %}">Logout</a></li>
+
                             {% else %}
                                 <li><a href="{% url 'auth_login' %}">Login</a></li>
+                                <li><a href="/backend">Maintenance</a></li>
                             {% endif %}
                             <!--<li><a href="/blog">Blog</a></li>
                             <li><a href="/blog/add_post">Add Post</a></li>-->

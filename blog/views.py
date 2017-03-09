@@ -100,22 +100,17 @@ def other(request):
 
 
 
+def post(request, slug=None):
 
+    instance = get_object_or_404(Post, slug=slug)
+    instance.views += 1
+    instance.save()
 
-
-
-
-def post(request, slug):
-
-    single_post = get_object_or_404(Post, slug=slug)
-    single_post.views += 1
-    single_post.save()
-
-    date = single_post.created_date.strftime('%a, %d %b %Y')
+    date = instance.created_date.strftime('%a, %d %b %Y')
     
     t = loader.get_template('blog/post.html')
     context_dict = {
-        'single_post': single_post,
+        'instance': instance,
         'popular_posts': get_popular_posts(),
         'date': date,
     }
@@ -137,28 +132,30 @@ def post_detail(request, id=None):
 #   REFERENCE Functions     #
 #############################
 
-# def add_post(request):    
-#     if not request.user.is_staff or not request.user.is_superuser:
-#         raise Http404
-#     if not request.user.is_authenticated:
-#         raise Http404
-#     if request.method == 'POST':
-#         form = PostForm(request.POST or None, request.FILES or None)
-#         if form.is_valid():
-#             form.save(commit=True)
-#             messages.success(request, "<a href='#'>Item1</a> Saved", extra_tags='html_safe')
-#             return redirect(add_post)
-#         else:
-#             print(form.errors)
-#     else:
-#         # request.method is GET
-#         form = PostForm()
+def add_post(request):    
+    if not request.user.is_staff or not request.user.is_superuser:
+        raise Http404
+    if not request.user.is_authenticated:
+        raise Http404
+    if request.method == 'POST':
+        form = PostForm(request.POST or None, request.FILES or None)
+        if form.is_valid():
+            instance = form.save(commit=True)
+            instance.user = request.user 
+            instance.save()
+            messages.success(request, "<a href='#'>Item1</a> Saved", extra_tags='html_safe')
+            return HttpResponseRedirect(instance.get_absolute_url())
+        else:
+            print(form.errors)
+    else:
+        # request.method is GET
+        form = PostForm()
 
-#         # context = RequestContext(request)
-#     context = { 
-#         "form": form,
-#     }
-#     return render(request, 'blog/add_post.html', context)
+        # context = RequestContext(request)
+    context = { 
+        "form": form,
+    }
+    return render(request, 'blog/add_post.html', context)
     # return render(request, 'blog/add_post.html', {'form': form},  context)
     # render_to_response doesn't make the request available in the response. 
     # Not recommended. Likely to be deprecated.
@@ -172,50 +169,60 @@ def post_detail(request, id=None):
 
 
 
-# def update_post(request, slug):
-#     if not request.user.is_staff or not request.user.is_superuser:
-#         raise Http404
-#     if not request.user.is_authenticated:
-#         raise Http404
-#     instance = get_object_or_404(Post, slug=slug)
+def update_post(request, slug):
+    if not request.user.is_staff or not request.user.is_superuser:
+        raise Http404
+    if not request.user.is_authenticated:
+        raise Http404
+    instance = get_object_or_404(Post, slug=slug)
     
-#     form = PostForm(request.POST or None, request.FILES or None, instance=instance)
-#     slug = instance.slug
-#     if form.is_valid():
-#         instance = form.save(commit=False)
-#         instance.save()
-#         messages.success(request, "<a href='#'>Item</a> saved", extra_tags='html_safe')
+    form = PostForm(request.POST or None, request.FILES or None, instance=instance)
+    slug = instance.slug
+    if form.is_valid():
+        instance = form.save(commit=False)
+        instance.save()
+        messages.success(request, "<a href='#'>Item</a> saved", extra_tags='html_safe')
 
-#         return HttpResponseRedirect(instance.get_absolute_url())
-#         # return redirect('post', category=instance.category)
+        return HttpResponseRedirect(instance.get_absolute_url())
+        # return redirect('post', category=instance.category)
 
-#     context = {
-#         "title": instance.title,
-#         "instance": instance,
-#         "form":form,
-#         "slug": instance.slug
-#     }
-#     return render(request, "blog/add_post.html", context)
+    context = {
+        "title": instance.title,
+        "instance": instance,
+        "form":form,
+        "slug": instance.slug
+    }
+    return render(request, "blog/add_post.html", context)
 
 
-# def delete_post(request, slug):
-#     if not request.user.is_staff or not request.user.is_superuser:
-#         raise Http404
-#     if not request.user.is_authenticated:
-#         raise Http404
-#     instance = get_object_or_404(Post, slug=slug)
-#     instance.delete()
-#     message = messages.success(request, "Successfully deleted")
+def delete_post(request, slug):
+    if not request.user.is_staff or not request.user.is_superuser:
+        raise Http404
+    if not request.user.is_authenticated:
+        raise Http404
+    instance = get_object_or_404(Post, slug=slug)
 
-#     if instance.category == 'hs':
-#         return redirect('healthspan')
-#     elif instance.category == 'tr':
-#         return redirect('training') 
-#     elif instance.category == 'et':
-#         return redirect('eating') 
-#     elif instance.category == 'sl':
-#         return redirect('sleeping') 
-#     elif instance.category == 'ln':
-#         return redirect('learning') 
-#     elif instance.category == 'ot':
-#         return redirect('other') 
+    if instance.category == 'hs':
+        instance.delete()
+        message = messages.success(request, "Successfully deleted")
+        return redirect('blog:healthspan')
+    elif instance.category == 'tr':
+        instance.delete()
+        message = messages.success(request, "Successfully deleted")
+        return redirect('blog:training') 
+    elif instance.category == 'et':
+        instance.delete()
+        message = messages.success(request, "Successfully deleted")
+        return redirect('blog:eating') 
+    elif instance.category == 'sl':
+        instance.delete()
+        message = messages.success(request, "Successfully deleted")
+        return redirect('blog:sleeping') 
+    elif instance.category == 'ln':
+        instance.delete()
+        message = messages.success(request, "Successfully deleted")
+        return redirect('blog:learning') 
+    elif instance.category == 'ot':
+        instance.delete()
+        message = messages.success(request, "Successfully deleted")
+        return redirect('blog:other') 

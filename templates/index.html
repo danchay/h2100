@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% block style %}
+    
+
+
+{% endblock %}
 
     {% block content %}
         {% block jumbotron %}
@@ -24,7 +29,7 @@
             {% endif %}
 
             <div class="row">
-                <div class="col-sm-8 ">
+                <div class="col-sm-8">
 
                     {% if latest_posts %}
                         <h1>{{ category }}</h1>
@@ -42,11 +47,16 @@
                                 </p><br />
                             {% endif %}
                                 
+                                <div class="">
                                 <p>
-                                    {{ post.header_text }}<br />
+                                    {{ post.get_markdown_header_text|safe }}<br />
+                                </p>
+                                </div>
+                                <p>
                                     <a class="pull-right" href="/blog/{{ post.slug }}">Read more...</a>
                                 </p>
                                 <br>
+                                
                             {% endfor %}
                         </ul>
                     {% endif %}

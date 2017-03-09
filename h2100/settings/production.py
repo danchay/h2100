@@ -57,6 +57,9 @@ INSTALLED_APPS = (
     'django_hosts',
     'storages',
     'crispy_forms',
+    'pagedown',
+    'markdown_deux',
+
 
     # Local Apps
     'analytics',

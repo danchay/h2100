@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 
+{% block style %}   
+
+
+
+{% endblock style %}
 
     {% block content %}
         {% block jumbotron %}
@@ -8,34 +13,40 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-1">
-                    <h1>{{ single_post.title }}</h1>
+                    <h1>{{ instance.title }}</h1>
 
                     <p>
                         <span style="padding-left:20px;"><em><small>{{ date }}</small></em></span>
                     </p> 
 
-                    {% if single_post.header_text %}
-                        <p>
-                        {{ single_post.header_text }}
-                        </p>
+                    {% if instance.header_text %}
+                        <!--<div  class="content-markdown">-->
+                        <div class=''>
+
+                                <p>
+                                <!--{{ instance.header_text }}-->
+                                    {{ instance.get_markdown_header_text|safe }}
+                                </p>
+
+                        </div>
                     {% endif %}
 
                     <p>
-                        {% if single_post.image %}
-                           <!-- <img src="/media/{{ single_post.image }}"> -->
-                           <img src="{{ single_post.image.url }}" class="img-responsive">
+                        {% if instance.image %}
+                           <!-- <img src="/media/{{ instance.image }}"> -->
+                           <img src="{{ instance.image.url }}" class="img-responsive">
                         {% endif %}
                     </p><br />
-                    <p>
-                        {{ single_post.body_text }}
+                    <p class="">
+                        {{ instance.get_markdown_body_text|safe }}
                     </p>
 
                     <p class="pull-right">
-                        Tag: {{ single_post.tag }}
+                        Tag: {{ instance.tag }}
                     </p><br />
             
                     <p>
-                        Return <a href="/blog">home</a>.
+                        Return <a href="/">home</a>.
                     </p><br/>
                 </div>
 

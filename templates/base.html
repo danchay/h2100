@@ -62,17 +62,30 @@
         <div class="container-fluid">
             {% block content %}
             {% endblock content %}
-
-
-        
         </div> <!-- /container -->
 
+
+
+
     <!-- Bootstrap core JavaScript -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js"></script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $(".content-markdown").each(function(){
+            var content = $(this).text()
+            var markedContent = marked(content)
+            $(this).html(markedContent)           
+        });
+        $(".content-markdown img").each(function(){
+            $(this).addClass("img-responsive");
+        })
+    });
+    </script>
 
     </body>
 </html>   

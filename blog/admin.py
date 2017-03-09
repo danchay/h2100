@@ -1,15 +1,22 @@
 from django.contrib import admin
 from blog.models import Post 
 
+from django.db import models
+from pagedown.widgets import AdminPagedownWidget
+
 
 
 class PostAdmin(admin.ModelAdmin):
+
+    formfield_overrides = {
+        models.TextField: {'widget': AdminPagedownWidget },
+    }
 
     class Meta:
         model = Post
         app_label = 'Blog Posts'
     
-    list_display = ['category', 'title', 'tag', 'status', 'created_date', 'updated' ]
+    list_display = ['id','category', 'tag', 'title', 'slug','status', 'created_date', 'updated' ]
     list_display_links = ['title']
     ordering = ['category', 'status', 'updated', 'created_date'  ]
     list_editable = ['tag']

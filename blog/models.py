@@ -4,6 +4,7 @@ from django.db.models.signals import pre_save
 
 from uuslug import uuslug
 # from django.utils.text import slugify
+from markdown_deux import markdown
 
 STATUS_CHOICES = (
     ('d', 'Draft'),
@@ -57,6 +58,14 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse("blog:post", kwargs={"slug": self.slug})
         # return reverse("posts:detail", kwargs={"id": self.id})
+
+    def get_markdown_header_text(self):
+        content = self.header_text
+        return markdown(content)
+
+    def get_markdown_body_text(self):
+        content = self.body_text 
+        return markdown(content)
 
     class Meta:
         ordering=["created_date", "-updated"]
