@@ -19,13 +19,13 @@
                         <span style="padding-left:20px;"><em><small>{{ date }}</small></em></span>
                     </p> 
 
-                    {% if instance.header_text %}
+                    {% if instance.preview %}
                         <!--<div  class="content-markdown">-->
                         <div class=''>
 
                                 <p>
-                                <!--{{ instance.header_text }}-->
-                                    {{ instance.get_markdown_header_text|safe }}
+                                <!--{{ instance.preview }}-->
+                                    {{ instance.get_markdown_preview|safe }}
                                 </p>
 
                         </div>

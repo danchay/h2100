@@ -21,11 +21,11 @@
                         <span style="padding-left:20px;"><em><small>{{ date }}</small></em></span>
                     </p> 
 
-                    {% if single_post.header_text %}
+                    {% if single_post.preview %}
                         <div  class="content-markdown">
                             <div class="">
                                 <p>
-                                {{ single_post.get_markdown_header_text|safe }}
+                                {{ single_post.get_markdown_preview|safe }}
                                 </p>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                 <p>
                 <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
                 Facebook</a> | 
-                <a href="https://twitter.com/home?status={{ instance.header_text|truncatechars:115|urlify }}%20{{ request.build_absolute_uri }}">
+                <a href="https://twitter.com/home?status={{ instance.preview|truncatechars:115|urlify }}%20{{ request.build_absolute_uri }}">
                 Twitter</a> | 
                 <a href='https://plus.google.com/share?url={{ request.build_absolute_uri }}'>Google Plus</a> | 
                 <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{instance.title}}&summary={{ share_string }}&source={{ request.build_absolute_uri }}">

@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
+{% load ckwote_tags %}
 {% block style %}
-    
-
 
 {% endblock %}
 
@@ -18,18 +17,20 @@
             </form><br />
         </div>
 
-            {% if category == "Hacking to 100" %}
+                {% if category == "Hacking to 100" %}
                 <div class="row">
                     <div class="col-sm-8 ">
-                        <p style="padding-left: 8px; padding-top:20px;"> 
-                            <strong><em>Aiming to extend lifespan in good health, i.e., healthspan.</em></strong>
+                        <p style="padding-left: 0px; font-size: medium; padding-top:20px; "> 
+                            <em>{% ckwote %}</em>
                         </p>
                     </div>
                 </div>
-            {% endif %}
+                {% endif %}
+            
 
             <div class="row">
                 <div class="col-sm-8">
+
 
                     {% if latest_posts %}
                         <h1>{{ category }}</h1>
@@ -49,7 +50,7 @@
                                 
                                 <div class="">
                                 <p>
-                                    {{ post.get_markdown_header_text|safe }}<br />
+                                    {{ post.get_markdown_preview|safe }}<br />
                                 </p>
                                 </div>
                                 <p>

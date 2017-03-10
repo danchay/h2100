@@ -27,7 +27,7 @@ def upload_location(instance, filename):
 class Post(models.Model):
 
     title = models.CharField(max_length=100)
-    header_text = models.TextField()
+    preview = models.TextField()
     body_text = models.TextField()
     created_date = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
@@ -59,8 +59,8 @@ class Post(models.Model):
         return reverse("blog:post", kwargs={"slug": self.slug})
         # return reverse("posts:detail", kwargs={"id": self.id})
 
-    def get_markdown_header_text(self):
-        content = self.header_text
+    def get_markdown_preview(self):
+        content = self.preview
         return markdown(content)
 
     def get_markdown_body_text(self):

@@ -58,18 +58,17 @@ def get_popular_posts():
     return popular_posts
 
 def index(request):
+    
+    latest_posts = Post.objects.all().filter(status='p').order_by('-created_date')[:10]
+
     date = ''
-    latest_posts = Post.objects.all().order_by('-created_date')[:10]
-
-
     for post in latest_posts:
         date = post.created_date.strftime('%a, %d %b %Y')
-
-
     paginator = Paginator(latest_posts, 8)
-    queryset_list = Post.objects.all().order_by('-created_date')
+    category = "Hacking to 100"
 
 
+    queryset_list = Post.objects.all()
     query = request.GET.get("q")
     if query:
         queryset_list = queryset_list.filter(
@@ -96,7 +95,7 @@ def index(request):
         'latest_posts': queryset,
         'popular_posts': get_popular_posts(),
         'date': date,
-        'category': 'Hacking to 100',
+        'category': category,
         'page_request_var': page_request_var,
     }
     c = Context(context_dict)

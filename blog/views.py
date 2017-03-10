@@ -105,6 +105,8 @@ def post(request, slug=None):
     instance = get_object_or_404(Post, slug=slug)
     instance.views += 1
     instance.save()
+    if instance.image:
+        print(instance.image.url)
 
     date = instance.created_date.strftime('%a, %d %b %Y')
     
@@ -119,7 +121,7 @@ def post(request, slug=None):
 
 def post_detail(request, id=None):
     instance = get_object_or_404(Post, id=id)
-    share_string = parse.quote(instance.header_text)
+    share_string = parse.quote(instance.preview)
     context = {
         "title": instance.title,
         "instance": instance,

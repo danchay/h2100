@@ -1,5 +1,6 @@
 from django.contrib import admin
 from blog.models import Post 
+from django.utils.html import format_html
 
 from django.db import models
 from pagedown.widgets import AdminPagedownWidget
@@ -21,9 +22,11 @@ class PostAdmin(admin.ModelAdmin):
     ordering = ['category', 'status', 'updated', 'created_date'  ]
     list_editable = ['tag']
     list_filter = [ 'category', 'status', 'created_date', 'updated']
-    search_fields = ['title', 'tag', 'body_text', 'header_text']
+    search_fields = ['title', 'tag', 'body_text', 'preview']
     actions = ['make_published', 'make_draft', 'make_withdrawn', 'cat_healthspan', 'cat_training', 'cat_eating', 'cat_sleeping', 'cat_learning', 'cat_other']
     prepopulated_fields = {"slug": ("title",)}
+
+
 
     def make_published(self, request, queryset):
         rows_updated = queryset.update(status='p')
