@@ -67,6 +67,7 @@ INSTALLED_APPS = (
     'contact',
     'shortener',
     'newsletter',
+    'ckwotes',
 )
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
