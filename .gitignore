@@ -5,6 +5,7 @@ __pycache__/
 
 h2100/settings/local.py
 migrations/
+migrations/*
 
 staticfiles
 media
@@ -12,6 +13,7 @@ media
 Procfile.local
 old_settings.py
 h2100.db
+*.db
 
 h2100-project.sublime-project
 h2100-project.sublime-workspace
