@@ -8,6 +8,7 @@ register = template.Library()
 def ckwote():
 	quote_list = list(Ckwote.objects.all().filter(status='p'))
 	shuffle(quote_list)
+	
 	ckwote=quote_list[0]
 
 	return ckwote
