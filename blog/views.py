@@ -99,25 +99,69 @@ def other(request):
     return render(request, prepared_posts[0], prepared_posts[1])
 
 
-
 def post(request, slug=None):
-
     instance = get_object_or_404(Post, slug=slug)
-    instance.views += 1
+    instance.views +=1
     instance.save()
     if instance.image:
         print(instance.image.url)
-
     date = instance.created_date.strftime('%a, %d %b %Y')
+
     
-    t = loader.get_template('blog/post.html')
-    context_dict = {
-        'instance': instance,
-        'popular_posts': get_popular_posts(),
-        'date': date,
-    }
-    c = Context(context_dict)
-    return HttpResponse(t.render(c))
+    query = request.GET.get("q")
+    if query:
+        queryset_list = Post.objects.all()
+        queryset_list = queryset_list.filter(
+            Q(title__icontains=query) |
+            Q(tag__icontains=query)
+            ).distinct()
+        paginator = Paginator(queryset_list, 8)
+        category = "Search Results"
+
+    
+        page_request_var = "page"
+        page = request.GET.get(page_request_var)
+        try:
+            queryset = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page.
+            queryset = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range (e.g. 9999), deliver last page of results.
+            queryset = paginator.page(paginator.num_pages)    
+
+        # template_name = 'blog/index.html'
+        template_name = 'index.html'
+        context_dict = {
+            'latest_posts': queryset,
+            'popular_posts': get_popular_posts(),
+            'date': date,
+            'category': category,
+            'page_request_var': page_request_var,
+        }
+        return render(request, template_name, context_dict)
+
+
+    else:
+        context_dict = {
+            'instance': instance,
+            'popular_posts': get_popular_posts(),
+            'date': date,
+        }
+    return render(request, 'blog/post.html', context_dict)
+
+
+
+
+
+
+
+
+
+
+#############################
+#   REFERENCE Functions     #
+#############################
 
 def post_detail(request, id=None):
     instance = get_object_or_404(Post, id=id)
@@ -130,9 +174,6 @@ def post_detail(request, id=None):
     }
     return render(request, "blog/post_detail.html", context)
 
-#############################
-#   REFERENCE Functions     #
-#############################
 
 def add_post(request):    
     if not request.user.is_staff or not request.user.is_superuser:
@@ -158,16 +199,8 @@ def add_post(request):
         "form": form,
     }
     return render(request, 'blog/add_post.html', context)
-    # return render(request, 'blog/add_post.html', {'form': form},  context)
-    # render_to_response doesn't make the request available in the response. 
-    # Not recommended. Likely to be deprecated.
 
-# class URLRedirectView(View):
-#     def get(self, request, slug=slug, *args, **kwargs):
-#         obj = get_object_or_404(Post, slug=slug) 
-#         # Save analytic data item
-#         print(ClickEvent.objects.create_event(obj))
-#         return HttpResponseRedirect(obj.url)
+
 
 
 
@@ -228,3 +261,33 @@ def delete_post(request, slug):
         instance.delete()
         message = messages.success(request, "Successfully deleted")
         return redirect('blog:other') 
+
+
+###############
+# Variations  #
+###############
+# def post(request, slug=None):
+
+#     instance = get_object_or_404(Post, slug=slug)
+#     instance.views += 1
+#     instance.save()
+#     if instance.image:
+#         print(instance.image.url)
+
+#     date = instance.created_date.strftime('%a, %d %b %Y')
+    
+#     t = loader.get_template('blog/post.html')
+#     context_dict = {
+#         'instance': instance,
+#         'popular_posts': get_popular_posts(),
+#         'date': date,
+#     }
+#     c = Context(context_dict)
+#     return HttpResponse(t.render(c))
+
+# class URLRedirectView(View):
+#     def get(self, request, slug=slug, *args, **kwargs):
+#         obj = get_object_or_404(Post, slug=slug) 
+#         # Save analytic data item
+#         print(ClickEvent.objects.create_event(obj))
+#         return HttpResponseRedirect(obj.url)
