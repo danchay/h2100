@@ -6,10 +6,15 @@ register = template.Library()
 
 @register.simple_tag 
 def ckwote():
+	# quote_list = (Ckwote.objects.all().filter(status='p'))
 	quote_list = list(Ckwote.objects.all().filter(status='p'))
 	shuffle(quote_list)
+
 	
-	ckwote=quote_list[0]
+	if not quote_list:
+		ckwote=''
+	else:
+		ckwote=quote_list[0]
 
 	return ckwote
 

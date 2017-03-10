@@ -9,7 +9,7 @@ STATUS_CHOICES = (
 class Ckwote(models.Model):
     ckwote = models.TextField(help_text='Exclude quotation marks.')
     essence = models.TextField(blank=True, null=True)
-    author = models.CharField(max_length=150, blank=True, null=True, help_text='Exclude --. Order first name, last name. Use "Unknown" or "Anonymous" or "A me ipso serva me" as appropriate.')
+    author = models.CharField(max_length=150, blank=True, null=True, help_text='Use "Unknown" or "Anonymous" or "A me ipso serva me" (Save me from myself) as appropriate.')
     circa = models.DateTimeField(blank=True, null=True)
     added_date = models.DateTimeField(auto_now_add=True, auto_now=False)
     source = models.TextField(blank=True, null=True, help_text='Citation format.')
