@@ -2,6 +2,8 @@ from datetime import *
 from .utilities.moon.moon import fm_series, flmoons_since
 
 from urllib import parse
+
+from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response, redirect, render 
@@ -75,8 +77,13 @@ def index(request):
             Q(title__icontains=query) |
             Q(tag__icontains=query)
             ).distinct()
-        paginator = Paginator(queryset_list, 8)
-        category = "Search Results"
+        if len(queryset_list) > 0:
+            paginator = Paginator(queryset_list, 8)
+            category = "Search Results"
+        else:
+            paginator = Paginator(latest_posts, 8)
+            category = "Hacking to 100"
+            messages.info(request, 'No results for that search term.')
 
     
     page_request_var = "page"
@@ -90,13 +97,15 @@ def index(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         queryset = paginator.page(paginator.num_pages)
 
-    t = loader.get_template('index.html')
+    # t = loader.get_template('index.html')
     context_dict = {
         'latest_posts': queryset,
         'popular_posts': get_popular_posts(),
         'date': date,
         'category': category,
         'page_request_var': page_request_var,
+        'query':query,
     }
-    c = Context(context_dict)
-    return HttpResponse(t.render(c))
+    # c = Context(context_dict)
+    # return HttpResponse(t.render(c))
+    return render(request, 'index.html', context_dict)

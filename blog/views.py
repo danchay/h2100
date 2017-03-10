@@ -40,8 +40,13 @@ def prepare_posts_by_category(request, category, cat):
             Q(title__icontains=query) |
             Q(tag__icontains=query)
             ).distinct()
-        paginator = Paginator(queryset_list, 8)
-        category = "Search Results"
+        if len(queryset_list) > 0:
+            paginator = Paginator(queryset_list, 8)
+            category = "Search Results"
+        else:
+            paginator = Paginator(latest_posts, 8)
+            category = "Hacking to 100"
+            messages.info(request, 'No results for that search term.')
 
     
     page_request_var = "page"
@@ -63,6 +68,7 @@ def prepare_posts_by_category(request, category, cat):
         'date': date,
         'category': category,
         'page_request_var': page_request_var,
+        'query': query,
     }
 
     return (template_name, context_dict)   
@@ -115,6 +121,7 @@ def post(request, slug=None):
             Q(title__icontains=query) |
             Q(tag__icontains=query)
             ).distinct()
+
         paginator = Paginator(queryset_list, 8)
         category = "Search Results"
 
@@ -138,6 +145,7 @@ def post(request, slug=None):
             'date': date,
             'category': category,
             'page_request_var': page_request_var,
+            'query': query,
         }
         return render(request, template_name, context_dict)
 

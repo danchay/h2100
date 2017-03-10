@@ -17,6 +17,8 @@
             </form><br />
         </div>
 
+
+
                 {% if category == "Hacking to 100" %}
                     
                     <div class="row">
@@ -35,6 +37,7 @@
 
 
                     {% if latest_posts %}
+
                         <h1>{{ category }}</h1>
                         <ul>
                             {% for post in latest_posts %}
@@ -55,9 +58,17 @@
                                     {{ post.get_markdown_preview|safe }}<br />
                                 </p>
                                 </div>
+
                                 <p>
                                     <a class="pull-right" href="/blog/{{ post.slug }}">Read more...</a>
                                 </p>
+
+                                {% if category == "Search Results" %}
+                                    <p>
+                                        Tag: {{ query }}
+                                    </p>
+                                {% endif %}
+
                                 <br>
                                 
                             {% endfor %}
