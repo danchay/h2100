@@ -24,25 +24,28 @@
 
                     {% if instance.preview %}
                         <!--<div  class="content-markdown">-->
-                        <div class=''>
+                        <div class='post-item'>
 
                                 <p>
                                 <!--{{ instance.preview }}-->
-                                    {{ instance.get_markdown_preview|safe }}
+                                    {{ instance.get_markdown_preview }}
                                 </p>
 
                         </div>
-                    {% endif %}
+                   <!-- {% endif %}
 
                     <p>
                         {% if instance.image %}
-                           <!-- <img src="/media/{{ instance.image }}"> -->
+                           
                            <img src="{{ instance.image.url }}" class="img-responsive">
                         {% endif %}
-                    </p><br />
-                    <p class="">
-                        {{ instance.get_markdown_body_text|safe }}
-                    </p>
+                    </p><br /> -->
+
+                    <div class='post-item'>
+                        <p>
+                            {{ instance.get_markdown_body_text }}
+                        </p>
+                    </div>
 
                     <p class="pull-right">
                         Tag: {{ instance.tag }}
@@ -52,10 +55,10 @@
                         Return <a href="/">home</a>.
                     </p><br/>
                 </div>
-                
+
                 <div class="col-md-3 pull-right" style="padding-top:25px;">
                     <form method='GET' action=''>{% csrf_token %}
-                        <input type='text' name='q' placeholder='Search titles and tags' value='{{ request.GET.q }}' />
+                        <input type='text' name='q' placeholder='Search in titles and tags' value='{{ request.GET.q }}' />
                         <input type='submit' value='Search' />
                     </form><br />
                 </div>

@@ -1,6 +1,7 @@
 from datetime import *
+from itertools import *
 from .utilities.moon.moon import fm_series, flmoons_since
-
+from functools import reduce
 from urllib import parse
 
 from django.contrib import messages
@@ -56,7 +57,7 @@ def about(request):
     return render(request, "about.html", context )
 
 def get_popular_posts():
-    popular_posts = Post.objects.order_by('-views')[:5]
+    popular_posts = Post.objects.filter(status='p').order_by('-views')[:5]
     return popular_posts
 
 def index(request):
@@ -72,6 +73,7 @@ def index(request):
 
     queryset_list = Post.objects.all()
     query = request.GET.get("q")
+
     if query:
         queryset_list = queryset_list.filter(
             Q(title__icontains=query) |
@@ -85,7 +87,6 @@ def index(request):
             category = "Hacking to 100"
             messages.info(request, 'No results for that search term.')
 
-    
     page_request_var = "page"
     page = request.GET.get(page_request_var)
     try:

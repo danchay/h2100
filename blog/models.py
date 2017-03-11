@@ -5,6 +5,7 @@ from django.db.models.signals import pre_save
 from uuslug import uuslug
 # from django.utils.text import slugify
 from markdown_deux import markdown
+from django.utils.safestring import mark_safe
 
 STATUS_CHOICES = (
     ('d', 'Draft'),
@@ -61,11 +62,13 @@ class Post(models.Model):
 
     def get_markdown_preview(self):
         content = self.preview
-        return markdown(content)
+        return mark_safe(markdown(content))
 
+    # These marked down instance objects can be used in templates, i.e., 
+    # {{instance.get_markdown_preview}}
     def get_markdown_body_text(self):
         content = self.body_text 
-        return markdown(content)
+        return mark_safe(markdown(content))
 
     class Meta:
         ordering=["created_date", "-updated"]

@@ -12,7 +12,7 @@
 
         <div class="col-md-3 pull-right" style="padding-top:25px;">
             <form method='GET' action=''>{% csrf_token %}
-                <input type='text' name='q' placeholder='Search titles and tags' value='{{ request.GET.q }}' />
+                <input type='text' name='q' placeholder='Search in titles and tags' value='{{ request.GET.q }}' />
                 <input type='submit' value='Search' />
             </form><br />
         </div>
@@ -53,9 +53,9 @@
                                 </p><br />
                             {% endif %}
                                 
-                                <div class="">
+                                <div class="post-item">
                                 <p>
-                                    {{ post.get_markdown_preview|safe }}<br />
+                                    {{ post.get_markdown_preview|truncatewords_html:40 }}<br />
                                 </p>
                                 </div>
 
@@ -65,7 +65,7 @@
 
                                 {% if category == "Search Results" %}
                                     <p>
-                                        Tag: {{ query }}
+                                        Search keyword: "{{ query }}"
                                     </p>
                                 {% endif %}
 

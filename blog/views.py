@@ -16,7 +16,7 @@ from blog.forms import PostForm
 
 
 def get_popular_posts():
-    popular_posts = Post.objects.order_by('-views')[:5]
+    popular_posts = Post.objects.filter(status='p').order_by('-views')[:5]
     return popular_posts
 
 
@@ -33,8 +33,9 @@ def prepare_posts_by_category(request, category, cat):
         date = post.created_date.strftime('%a, %d %b %Y')
     paginator = Paginator(latest_posts, 3)
 
-    queryset_list = Post.objects.all()
+    queryset_list = Post.objects.all().filter(status='p')
     query = request.GET.get("q")
+
     if query:
         queryset_list = queryset_list.filter(
             Q(title__icontains=query) |
@@ -48,7 +49,6 @@ def prepare_posts_by_category(request, category, cat):
             category = "Hacking to 100"
             messages.info(request, 'No results for that search term.')
 
-    
     page_request_var = "page"
     page = request.GET.get(page_request_var)
     try:
@@ -116,7 +116,7 @@ def post(request, slug=None):
     
     query = request.GET.get("q")
     if query:
-        queryset_list = Post.objects.all()
+        queryset_list = Post.objects.all().filter(status='p')
         queryset_list = queryset_list.filter(
             Q(title__icontains=query) |
             Q(tag__icontains=query)
