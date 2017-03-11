@@ -8,9 +8,26 @@
 
 		    <div class="jumbotron">
 		        <div class="container">
+
 		            <div class="row">
-		                <div class="col-sm-8 col-sm-offset-1">
+
+		            	<div class='col-sm-6'>
+		            		<h1>Preview</h1>
+		            		<hr>
+		            		<div class='content-preview'>
+		            		<h3 id='preview-title'></h3>
+		            		<p id='preview'></p>
+		            		<p id='preview-body_text'></p>
+
+		            	</div>
+		            	
+		            </div>
+
+		            <div class="row">
+		            	<div class="col-sm-6">
+		                <!--<div class="col-sm-8 col-sm-offset-1">-->
 							<h1>Add a Post</h1>
+							</hr>
 							<form id="post_form" method="post" action="/blog/add_post/" enctype="multipart/form-data">{% csrf_token %}
 								{{ form | crispy }}
 
@@ -22,6 +39,7 @@
 							</form><br />
 						</div>
 					</div>
+
 				</div>
 			</div>
 

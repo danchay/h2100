@@ -84,6 +84,51 @@
         $(".post-item img").each(function(){
             $(this).addClass("img-responsive");
         })
+        // preview-title id_title
+        // preview id_preview
+        // preview-body_text id_body_text
+
+        var titleInput = $("#id_title");  
+        function setTitle(value) {
+            $("#preview-title").text(value)
+        }
+        setTitle(titleInput.val())
+        titleInput.keyup(function(){
+            var newContent = $(this).val()
+            setTitle(newContent)
+        })
+
+        var previewInput = $("#id_preview");
+        function setPreview(value){
+            var markedContent = marked(value)
+            $("#preview").html(markedContent)
+            $("#preview img").each(function(){
+                $(this).addClass("img-responsive")
+            })
+        }
+        setPreview(previewInput.val())
+        previewInput.keyup(function(){
+            var newContent = $(this).val()
+            setPreview(newContent)
+        })
+
+        var previewBodyTextInput = $("#id_body_text");
+        function setBodyText(value){
+            var markedContent = marked(value)
+            $("#preview-body_text").html(markedContent)            
+            $("#preview-body_text img").each(function(){
+                $(this).addClass("img-responsive")
+            })
+        }
+        setBodyText(previewBodyTextInput.val())
+        previewBodyTextInput.keyup(function(){
+            var newContent = $(this).val()
+            setBodyText(newContent)
+        })
+
+
+
+
     });
     </script>
 
