@@ -1,4 +1,5 @@
 from django.conf.urls import url
+
 # from blog import views better done as below to avoid multiple view calls if app
 # is added to other projects.
 from blog.views import (

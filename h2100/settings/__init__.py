@@ -1,9 +1,12 @@
-
-
 try:
-	from .local import *
+	from .pglocal import *
 except:
-	pass
+	try:
+		from .local import *
+	except:
+		pass
+
+
 
 try:
 	from .production import *

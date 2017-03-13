@@ -17,6 +17,8 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
+
+
 from .settings import MEDIA_URL
 from .settings import STATIC_URL, STATIC_ROOT
 from . import views
@@ -34,6 +36,7 @@ urlpatterns = [
     url(r'^newsletter/', include('newsletter.urls')),
     url(r'^contact/', include('contact.urls')),
     url(r'^about/', views.about, name="about"),
+    url(r'^pages/', include('django.contrib.flatpages.urls')),
     # url(r'^healthspan/', views.healthspan, name="healthspan"),
     # url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': MEDIA_ROOT}),
 ] 

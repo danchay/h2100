@@ -4,6 +4,7 @@ __pycache__/
 *.log
 
 h2100/settings/local.py
+h2100/settings/local_pg.py
 migrations/
 migrations/*
 

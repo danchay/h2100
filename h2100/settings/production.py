@@ -53,6 +53,7 @@ MESSAGE_TAGS = {
 
 INSTALLED_APPS = (
     'django.contrib.admin',
+    'django.contrib.flatpages',
     'django.contrib.sites',
     'registration', # Should be immediately above 'django.contrib.auth'
     'django.contrib.auth',
@@ -60,6 +61,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
 
     # Third Party Apps
     'django_forms_bootstrap',
@@ -102,6 +104,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django_hosts.middleware.HostsResponseMiddleware',
+    #'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 )
 
 ROOT_URLCONF = 'h2100.urls'
