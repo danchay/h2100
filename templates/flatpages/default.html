@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load tags %}
+{% load static %}
+{% load bootstrap_tags %}
+
+
+{% block title %}
+{{ block.super }} - {{ flatpage.title }}
+{% endblock %}
+
+    {% block content %}
+    {% block jumbotron %}
+
+    <div class="jumbotron">
+    <div class="container">
+    <div class="row">
+
+    	<div class="col-sm-9 col-sm-offset-1">
+    	<h1> {{ flatpage.title }}</h1>
+    	{{ flatpage.content }}
+			
+		</div>
+
+	</div>
+	</div>
+	</div>
+
+{% endblock %}
+{% endblock %}

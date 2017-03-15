@@ -17,6 +17,10 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
+from django.contrib.admin import AdminSite
+AdminSite.site_header = 'Hacking To 100: '
+AdminSite.site_title = 'Hacking To 100'
+AdminSite.index_title = 'H2100 Apps Admin'
 
 
 from .settings import MEDIA_URL
@@ -36,12 +40,14 @@ urlpatterns = [
     url(r'^newsletter/', include('newsletter.urls')),
     url(r'^contact/', include('contact.urls')),
     url(r'^about/', views.about, name="about"),
-    url(r'^pages/', include('django.contrib.flatpages.urls')),
+
     # url(r'^healthspan/', views.healthspan, name="healthspan"),
     # url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': MEDIA_ROOT}),
 ] 
+
 
 if settings.DEBUG:
     from .settings import MEDIA_ROOT
     urlpatterns += static(STATIC_URL, document_root=STATIC_ROOT)
     urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
+

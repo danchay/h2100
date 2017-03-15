@@ -16,29 +16,26 @@ from django.contrib.messages import constants as messages
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY=os.environ['SECRET_KEY']
+SECRET_KEY = '1!3)52_eu&!5k*2j7z3e@ay2i9v=l0_qud2c29&@&zoeh!yqsv'
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['hackingto100.com', 'www.hackingto100.com', 'h2100.herokuapp.com']
-
+ALLOWED_HOSTS = ['www.tirr.com', 'tirr.com', 'hackingto100.com', 'www.hackingto100.com']
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER= 'h2100email@gmail.com'
-EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+EMAIL_HOST_PASSWORD = 'Wgo01110lef..,,,'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
 '''
 If using gmail, you will need to unlock Captcha to enable Django to send for you:
 https://accounts.google.com/displayunlockcaptcha
 '''
-ADMINS = (
-        ("Dan Chay", "danchay@gmail.com"),
-    )
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
@@ -48,13 +45,12 @@ MESSAGE_TAGS = {
     messages.ERROR: 'alert-danger',
 }
 
-
 # Application definition
 
 INSTALLED_APPS = (
     'django.contrib.admin',
-    'django.contrib.flatpages',
     'django.contrib.sites',
+    'django.contrib.flatpages',
     'registration', # Should be immediately above 'django.contrib.auth'
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -66,11 +62,9 @@ INSTALLED_APPS = (
     # Third Party Apps
     'django_forms_bootstrap',
     'django_hosts',
-    'storages',
     'crispy_forms',
     'markdown_deux',
     'pagedown',
-
 
 
     # Local Apps
@@ -92,6 +86,9 @@ LOGIN_REDIRECT_URL = '/'
 # REGISTRATION_EMAIL_HTML
 SITE_ID = 1
 
+
+
+
 MIDDLEWARE_CLASSES = (
     'django_hosts.middleware.HostsRequestMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -102,16 +99,21 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django_hosts.middleware.HostsResponseMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 )
 
+
+
 ROOT_URLCONF = 'h2100.urls'
 ROOT_HOSTCONF = 'h2100.hosts'
 DEFAULT_HOST = 'www'
-DEFAULT_REDIRECT_URL = "http://www.hackingto100.com"
-PARENT_HOST = "hackingto100.com"
+# Following are set to actual domain names in production. The addresses
+# below are reflected in Windows/system32/drivers/etc/hosts mapping of
+# 127.0.0.1     tirr.com and 127.0.0.1 www.tirr.com 
+# Port 8000 for run w/o heroku procfile; port 5000 with
+DEFAULT_REDIRECT_URL = "http://www.tirr.com:8000"
+PARENT_HOST = "tirr.com"
 
 TEMPLATES = [
     {
@@ -139,19 +141,16 @@ WSGI_APPLICATION = 'h2100.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-DATABASES = {
+DATABASES = {  
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'h2100.db'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'h2100',                      # Or path to database file if using sqlite3.
+        'USER': 'chay',                      # Not used with sqlite3.
+        'PASSWORD': 'lopdat',                  # Not used with sqlite3.
+        'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '5432',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
-
-# Update database configuration with $DATABASE_URL. This is for Heroku.
-import dj_database_url
-db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)
-
-
 
 # Password Validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -185,10 +184,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-# If SHORTCODE variables are changed, migrate dbase because these change the models
-SHORTCODE_MAX = 16
-SHORTCODE_MIN = 4
-
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -199,50 +194,30 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-
-AWS_QUERYSTRING_AUTH = False
-AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
-AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
-AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET_NAME']
-MEDIA_URL = 'http://%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
-DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
-
-
-
-
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_URL = '/static/'
 
 # STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+# STATIC_ROOT = os.path.join(PROJECT_DIR, 'static_in_venv', 'static_root')
+# # STATIC_ROOT = os.path.join(BASE_DIR, 'static', 'static_root')
+# # # STATIC_ROOT = "/var/www/example.com/static/"
+# # # STATIC_ROOT is where files are collected to be served when going live
+# # Path also could be: os.path.join(os.path.dirname(BASE_DIR), 'static_in_env', 'static_root')
+
+# # We put our files in STATICFILES_DIRS; could include ,'/var/www/static',
 # STATICFILES_DIRS = (
 #     os.path.join(BASE_DIR, 'static'),
-#     )
-# MEDIA_URL= '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-
-
-# STATIC_ROOT is where files are collected to be served when going live
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
-# STATIC_ROOT = os.path.join(PROJECT_DIR, 'static_in_venv', 'static_root')
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static', 'static_root')
-# STATIC_ROOT = "/var/www/example.com/static/"
-# Path also could be: os.path.join(os.path.dirname(BASE_DIR), 'static_in_env', 'static_root')
-
-# We put our files in STATICFILES_DIRS; could include ,'/var/www/static',
-# STATICFILES_DIRS = (
-#    os.path.join(BASE_DIR, 'static'),
-#    os.path.join(BASE_DIR, 'static', 'h2_static'),
+#     # os.path.join(BASE_DIR, 'static', 'h2_static'),
+    
 #     )
 
-# Media is where user-uploaded files go
-# MEDIA_URL= '/media/'
+MEDIA_URL= '/media/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
-# MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
+#MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 
-
-
+SHORTCODE_MAX = 16
+SHORTCODE_MIN = 4

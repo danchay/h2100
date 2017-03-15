@@ -30,3 +30,8 @@ body {
 .jumbotron p {
 	font-weight: 300 !important;
 }
+
+.wmd-panel {
+    margin-left: 0px;
+    margin-right: 0px;
+}
