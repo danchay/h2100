@@ -100,59 +100,27 @@ def about(request, slug=None):
 
 
 
-def post(request, slug=None):
-    instance = get_object_or_404(Post, slug=slug)
-    instance.visits +=1
-    instance.save()
-    if instance.image:
-        print(instance.image.url)
-    date = instance.created.strftime('%a, %d %b %Y')
-    tags = instance.display_tags
-    
-    query = request.GET.get("q")
-    if query:
-        queryset_list = Post.objects.all().filter(status='p')
-        queryset_list = queryset_list.filter(
-            Q(title__icontains=query) |
-            Q(tags__slug__icontains=query)
-            ).distinct()
-
-        paginator = Paginator(queryset_list, 8)
-        category = "Search Results"
-
-    
-        page_request_var = "page"
-        page = request.GET.get(page_request_var)
-        try:
-            queryset = paginator.page(page)
-        except PageNotAnInteger:
-            # If page is not an integer, deliver first page.
-            queryset = paginator.page(1)
-        except EmptyPage:
-            # If page is out of range (e.g. 9999), deliver last page of results.
-            queryset = paginator.page(paginator.num_pages)    
-
-        # template_name = 'blog/index.html'
-        # template_name = 'index.html'
+def bad_request(request):
+    response = render_to_response('400.html', {},
+                                  context_instance=RequestContext(request))
+    response.status_code = 400
+    return response
 
 
-        context_dict = {
-            'latest_posts': queryset,
-            'popular_posts': get_popular_posts(),
-            'date': date,
-            'category': category,
-            'page_request_var': page_request_var,
-            'query': query,
-            'tags': tags,
-        }
-        return render(request, 'blog/index.html', context_dict)
+def permission_denied(request):
+    response = render_to_response('403.html', {},
+                                  context_instance=RequestContext(request))
+    response.status_code = 403
+    return response
 
+def page_not_found(request):
+    response = render_to_response('404.html', {},
+                                  context_instance=RequestContext(request))
+    response.status_code = 404
+    return response
 
-    else:
-        context_dict = {
-            'instance': instance,
-            'popular_posts': get_popular_posts(),
-            'date': date,
-            'tags': tags,
-        }
-    return render(request, 'blog/post.html', context_dict)
+def server_error(request):
+    response = render_to_response('500.html', {},
+                                  context_instance=RequestContext(request))
+    response.status_code = 500
+    return response

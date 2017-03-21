@@ -33,7 +33,7 @@ AdminSite.index_title = 'H2100 Apps Admin'
 
 from .settings import MEDIA_URL
 from .settings import STATIC_URL, STATIC_ROOT
-from .views import about
+from .views import * 
 from blog import views as blog_views
 
  
@@ -58,3 +58,8 @@ if settings.DEBUG:
     from .settings import MEDIA_ROOT
     urlpatterns += static(STATIC_URL, document_root=STATIC_ROOT)
     urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
+
+handler400 = 'h2_1.views.bad_request'
+handler403 = 'h2_1.views.permission_denied'
+handler404 = 'h2_1.views.page_not_found'
+handler500 = 'h2_1.views.server_error'
