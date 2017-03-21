@@ -1,0 +1,105 @@
+{% load static %}
+{% load nights_tags %}
+
+<!--Style-->
+    {% block style %}
+    {% endblock %}
+
+
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <!--<div class="navbar navbar-default navbar-static-top">-->
+        <nav class="navbar">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{% url 'index' %}">
+                    <img class="navbar-brand" style="padding-top:0px; margin-left: 15px;margin-right:0px;padding-left:10px;" src="{% static 'img/favicon-32x32.png' %}" /><span class="navbar-brand" style="padding-top: 10px;">
+                    Hacking To 100:</span></a><span class="navbar-brand" style="padding-left: 7px; padding-top: 25px; padding-right:15px;">...{% nights %} days pending.</span>     
+
+                </div>
+
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav" style="padding-top:10px">
+                    <li><a href="{% url 'blog:healthspan' %}">Healthspan</a></li>
+<!-- Dropdown -->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        Training <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{% url 'blog:training' %}">Training</a></li>
+                           
+
+                        </ul>
+                        </li>
+<!-- Next Dropdown -->                
+
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        Eating <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{% url 'blog:eating' %}">Eating</a></li>
+                            
+
+                        </ul>
+                        </li>
+<!-- Next Dropdown -->
+
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        Sleeping <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{% url 'blog:sleeping' %}">Sleeping</a></li>
+
+
+                        </ul>
+                        </li>
+<!-- Next Dropdown -->
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        Learning <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{% url 'blog:learning' %}">Learning</a></li>
+                        </ul>
+                        </li>
+<!-- Next Dropdown -->
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        Other <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li class="dropdown-header">Related</li>
+                            <li><a href="{% url 'about' %}">About This Site</a></li>
+                            <li><a href="{% url 'blog:other' %}">Other Musings</a></li>
+
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Network</li>
+                           
+                            <li><a href="">Contact</a></li> <!--{ % url 'contact' %}-->
+
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Miscellaneous</li>
+                            {% if request.user.is_authenticated %}
+                                <li><a href="{% url 'auth_logout' %}">Logout</a></li>
+                                <li><a href="/backend">Maintenance</a></li>
+                            {% else %}
+                                <li><a href="{% url 'auth_login' %}">Login</a></li>
+                                <li><a href="/backend">Maintenance</a></li>
+                            {% endif %}
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Tangents</li>
+                                <ul>
+                                    {% for page in flatpages %}
+                                    <li><a href="{{ page.get_absolute_url }}">{{ page.title }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            <!--<li><a href="/blog">Blog</a></li>
+                            <li><a href="/blog/add_post">Add Post</a></li>-->
+                        </ul>
+                        </li>
+                    </ul>
+
+
+                </div><!--/.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </div><!-- / navbar -->
+    </nav>

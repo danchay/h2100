@@ -33,17 +33,22 @@ AdminSite.index_title = 'H2100 Apps Admin'
 
 from .settings import MEDIA_URL
 from .settings import STATIC_URL, STATIC_ROOT
-# from . import views
-# from blog import views as blog_views 
+from .views import about
+from blog import views as blog_views
+
+ 
 
 
 
 
 urlpatterns = [
-    # url(r'^$', views.index, name="home"),
-    # url(r'^blog/', include('blog.urls', namespace='blog')),
+    url(r'^about-this-site/$', about, name='about'),
+    url(r'^$', blog_views.index, name="index"),
+    url(r'^index/', blog_views.index),
+    url(r'^blog/', include('blog.urls', namespace='blog')),
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^backend/', include(admin.site.urls)),
+    url(r'^ckwotes/', include('ckwotes.urls', namespace='ckwotes')),
     # url(r'^about/', views.about, name="about"),
 
 ] 

@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block style %}   
+{% endblock style %}
+
+
+    {% block content %}
+        {% block jumbotron %}
+
+    <div class="jumbotron">
+        <div class="container">
+
+
+
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-1">
+                    <h1>{{ instance.title }}</h1>
+
+                    <p>
+                        <span style="padding-left:20px;"><em><small>{{ date }}</small></em></span>
+                    </p> 
+
+                    {% if instance.tease %}
+                        <!--<div  class="content-markdown">-->
+                        <div class='post-item'>
+
+                                <p>
+                                <!--{ { instance.preview } }
+                                    { { instance.get_markdown_preview } }
+                                </p>-->
+
+                        </div>
+                    {% endif %}
+
+                    <!--<p>
+                        { % if instance.image % }
+                           
+                           <img src="{ { instance.image.url } }" class="img-responsive">
+                        { % endif % }
+                    </p><br /> -->
+
+                    <div class='post-item'>
+                        <p>
+                            <!--{ { instance.get_markdown_body_text } }--> {{ instance.body | safe }}
+                        </p>
+                    </div>
+
+                    <p class="pull-right">
+                        Tag: {{ tags }}
+                    </p><br />
+            
+                    <p>
+                        Return <a href="/">home</a>.
+                    </p><br/>
+                </div>
+
+                <div class="col-md-3 pull-right" style="padding-top:25px;">
+                    <form method='GET' action=''>{% csrf_token %}
+                        <input type='text' name='q' placeholder='Search in titles and tags' value='{{ request.GET.q }}' />
+                        <input type='submit' value='Search' />
+                    </form><br />
+                </div>
+
+                <div class="col-md-3 pull-right">
+                    <h4>Most Popular Posts</h4>
+                    <ul>
+                        {% for popular_post in popular_posts %}
+                            <li><a href="/blog/{{ popular_post.slug }}">{{ popular_post.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="col-md-3 pull-right"><h4>Email:</h4>
+                <address> <a href="mailto:h2100email@gmail.com">Dan Chay</a></address>
+                </div>
+
+
+
+
+        </div>
+    </div>
+
+    {% endblock %}
+    {% endblock %}

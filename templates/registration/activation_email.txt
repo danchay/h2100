@@ -1,0 +1,11 @@
+{% load i18n %}
+{% trans "Activate account at" %} {{ site.name }}:
+
+Assuming you intend to register at the website "Hackingto100.com", click the link below to activate your account.
+
+http://{{ site.domain }}{% url 'registration_activate' activation_key %}
+
+
+{% blocktrans %}The above link will remain valid for {{ expiration_days }} days.{% endblocktrans %}
+
+-- Dan Chay

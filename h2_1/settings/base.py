@@ -24,6 +24,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'qu680xyo799#@7yhebdbchbg%+rcyb+^%hdo*uo(kl=9gt$3z*'
 
+# Django-registration-redux settings
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = True
+LOGIN_REDIRECT_URL = '/'
+#LOGIN_REDIRECT_URL = '/accounts/profile/'
+# REGISTRATION_DEFAULT_FROM_EMAIL
+# REGISTRATION_EMAIL_HTML
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -48,15 +58,10 @@ MESSAGE_TAGS = {
     messages.ERROR: 'alert-danger',
 }
 
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
-# Django-registration-redux settings
-ACCOUNT_ACTIVATION_DAYS = 7
-REGISTRATION_AUTO_LOGIN = True
-LOGIN_REDIRECT_URL = '/'
-#LOGIN_REDIRECT_URL = '/accounts/profile/'
-# REGISTRATION_DEFAULT_FROM_EMAIL
-# REGISTRATION_EMAIL_HTML
+
 SITE_ID = 1
+
+TAGGIT_CASE_INSENSITIVE = True
 
 # Application definition
 
@@ -74,8 +79,12 @@ INSTALLED_APPS = (
     # Third Party Apps
     'django_forms_bootstrap',
     'crispy_forms',
+    'taggit',
+    'autoslug',
 
-    # Local Apps    
+    # Local Apps 
+    'blog',
+    'ckwotes',   
 
 )
 
@@ -92,13 +101,14 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'h2_1.urls'
+
 DEFAULT_HOST = 'www'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        # 'APP_DIRS': True, #Should not be set when loaders is defined.
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
