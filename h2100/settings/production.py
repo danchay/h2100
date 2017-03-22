@@ -19,12 +19,12 @@ PARENT_HOST = "hackingto100.com"
 WSGI_APPLICATION = 'h2100.wsgi.application'
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'h2100.db'),
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'h2100.db'),
+    }
+}
 
 # Update database configuration with $DATABASE_URL. This is for Heroku.
 import dj_database_url
