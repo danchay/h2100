@@ -2,10 +2,12 @@ from django.db import models
 from django.template.defaultfilters import truncatewords # or truncatechars
 from blog.models import Category
 
+
 STATUS_CHOICES = (
     ('d', 'Draft'),
     ('p', 'Published')
     )
+
 PUBLISH_CHOICES = (
 	('c', 'Ckwote'),
 	('m', 'My Take'),
@@ -43,4 +45,5 @@ class Ckwote(models.Model):
     @property 
     def short_essence(self):
         return truncatewords(self.my_take, 25)
+
 

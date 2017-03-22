@@ -3,6 +3,7 @@ __pycache__/
 
 *.log
 
+<<<<<<< HEAD
 h2100/settings/pglocal.py
 h2100/settings/sqlite.py
 h2100/settings.py
@@ -16,6 +17,7 @@ Procfile.local
 old_settings.py
 h2100.db
 *.db
+<<<<<<< HEAD
 db.*
 backups/*
 *.dump

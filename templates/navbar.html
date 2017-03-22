@@ -6,6 +6,7 @@
     {% endblock %}
 
 
+
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <!--<div class="navbar navbar-default navbar-static-top">-->
         <nav class="navbar">
@@ -17,7 +18,9 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
+
                     <a class="navbar-brand" href="{% url 'index' %}">
+
                     <img class="navbar-brand" style="padding-top:0px; margin-left: 15px;margin-right:0px;padding-left:10px;" src="{% static 'img/favicon-32x32.png' %}" /><span class="navbar-brand" style="padding-top: 10px;">
                     Hacking To 100:</span></a><span class="navbar-brand" style="padding-left: 7px; padding-top: 25px; padding-right:15px;">...{% nights %} days pending.</span>     
 
@@ -69,12 +72,14 @@
                         <ul class="dropdown-menu" role="menu">
                             <li class="dropdown-header">Related</li>
                             <li><a href="{% url 'about' %}">About This Site</a></li>
+
                             <li><a href="{% url 'blog:other' %}">Other Musings</a></li>
 
                             <li class="divider"></li>
-                            <li class="dropdown-header">Network</li>
-                           
+                            <li class="dropdown-header">Network</li>                           
+
                             <li><a href="">Contact</a></li> <!--{ % url 'contact' %}-->
+
 
                             <li class="divider"></li>
                             <li class="dropdown-header">Miscellaneous</li>

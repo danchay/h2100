@@ -1,4 +1,3 @@
-
 from django.contrib import messages
 from django.contrib.contenttypes.models import ContentType
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -214,4 +213,5 @@ def learning(request):
 def other(request):
     prepared_posts = prepare_posts_by_category(request, 'Other')
     return render(request, prepared_posts[0], prepared_posts[1])
+
 

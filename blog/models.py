@@ -101,3 +101,4 @@ class BlogRoll(models.Model):
 
     def get_absolute_url(self):
         return self.url
+

@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load ckwote_tags %}
+{% block style %}
+
+{% endblock %}
+
+    {% block content %}
+        {% block jumbotron %}
+
+    <div class="jumbotron">
+        <div class="container">
+
+        <div class="col-md-3 pull-right" style="padding-top:25px;">
+            <form method='GET' action=''>{% csrf_token %}
+                <input type='text' name='q' placeholder='Search in titles and tags' value='{{ request.GET.q }}' />
+                <input type='submit' value='Search' />
+            </form><br />
+        </div>
+
+
+
+                {% if category == "Hacking to 100" %}
+                    
+                    <div class="row">
+                        <div class="col-sm-8 ">
+                            <p style="padding-left: 0px; font-size: medium; padding-top:20px; "> 
+                                <em>{% ckwote %}</em>
+                            </p>
+                        </div>
+                    </div>
+                    
+                {% endif %}
+            
+
+            <div class="row">
+                <div class="col-sm-8">
+
+
+                    {% if latest_posts %}
+
+                        <h1>{{ category }}</h1>
+                        <ul>
+                            {% for post in latest_posts %}
+                                <h2><a href="/blog/{{ post.slug }}">{{ post.title }}</a></h2>
+
+                                <p>
+                                    <span style="padding-left:20px;"><em><small>{{ date }}</small></em></span>
+                                </p>
+                            {% if post.image %}
+                                <p>
+                                    <!-- <img src="/media/{{ single_post.image }}"> -->
+                                    <img src="{{ post.image.url }}" class="img-responsive img-thumbnail" width="600" height="450 ">
+                                </p><br />
+                            {% endif %}
+                                
+                                <div class="post-item">
+                                <p>
+                                    {{ post.get_markdown_preview|truncatewords_html:40 }}<br />
+                                </p>
+                                </div>
+
+                                <p>
+                                    <a class="pull-right" href="/blog/{{ post.slug }}">Read more...</a>
+                                </p>
+
+                                {% if category == "Search Results" %}
+                                    <p>
+                                        Search keyword: "{{ query }}"
+                                    </p>
+                                {% endif %}
+
+                                <br>
+                                
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+                <div class="col-md-3 pull-right">
+                    <h4>Most Popular Posts</h4>
+                    <ul>
+                        {% for popular_post in popular_posts %}
+                            <li><a href="/blog/{{ popular_post.slug }}">{{ popular_post.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="col-md-3 pull-right"><h4>Email:</h4>
+                <address> <a href="mailto:h2100email@gmail.com">Dan Chay</a></address>
+                </div>
+
+            </div>
+            <div class="pagination">
+                <span class="step-links">
+                    {% if latest_posts.has_previous %}
+                        <a href="?{{ page_request_var }}={{ latest_posts.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ latest_posts.number }} of {{ latest_posts.paginator.num_pages }}.
+                    </span>
+
+                    {% if latest_posts.has_next %}
+                        <a href="?{{ page_request_var }}={{ latest_posts.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Next</a>
+                    {% endif %}
+                </span>
+            </div>
+            </div>
+
+
+    </div>
+
+
+    {% endblock %}
+    {% endblock %}
+

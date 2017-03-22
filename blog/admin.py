@@ -34,6 +34,7 @@ class PostAdmin(admin.ModelAdmin):
     #     models.TextField: {'widget': AdminPagedownWidget },
     # }
 
+
     class Meta:
         model = Post
         app_label = 'Blog Posts'
@@ -71,8 +72,7 @@ class PostAdmin(admin.ModelAdmin):
     make_draft.short_description = "Mark selected stories as draft"
 
 
-
-
 admin.site.register(Post, PostAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(BlogRoll, BlogRollAdmin)
+

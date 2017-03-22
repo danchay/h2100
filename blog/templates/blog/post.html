@@ -21,10 +21,12 @@
                     </p> 
 
                     {% if instance.tease %}
+
                         <!--<div  class="content-markdown">-->
                         <div class='post-item'>
 
                                 <p>
+
                                 <!--{ { instance.preview } }
                                     { { instance.get_markdown_preview } }
                                 </p>-->
@@ -37,16 +39,20 @@
                            
                            <img src="{ { instance.image.url } }" class="img-responsive">
                         { % endif % }
+
                     </p><br /> -->
 
                     <div class='post-item'>
                         <p>
                             <!--{ { instance.get_markdown_body_text } }--> {{ instance.body | safe }}
+
                         </p>
                     </div>
 
                     <p class="pull-right">
+
                         Tag: {{ tags }}
+
                     </p><br />
             
                     <p>

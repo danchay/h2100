@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap_tags %}
+{% block head_title %} | Healthspan {% endblock %}
+{% block style %} 
+/*.jumbotron {
+    background-color: #155a13 !important;
+} */
+{% endblock %}
+
+    {% block content %}
+    {% block jumbotron %}
+
+    <div class="jumbotron">
+    <div class="container">
+    <div class="row">
+    	<div class="col-sm-9 col-sm-offset-1">
+
+        <h1>Healthspan</h1>
+        <!--<label for="id_title" class="lead">Healthspan</label>-->
+        
+        <p> 
+            Aiming for lifespan in good health, <em>i.e.</em>, healthspan.
+        </p>
+
+        <p>
+            Prolong strength, mobility, creativity, and mental acuity. Let's minimize disease, torpor, and depression. Here's seeking lifestyle choices and behaviors for which there is promising evidence for optimizing healthspan. 
+        </p>
+
+        <p>
+            At this point, excercise (<strong>training</strong>), optimal weight and nutrition (<strong>eating</strong>), good <strong>sleep</strong>, and <strong>learning</strong> seem like themes offering most evidence and promise (that I've seen) for shaping healthspan positively. </p>
+
+        <p>
+             Here's to the challenge of digesting available evidence and converting learning into improved results, a longer healthspan. For me, it begins as an experiment of n=1. Feedback may provide foundation to grow that. 
+        </p>
+
+        <div class="col-sm-6 col-sm-offset-4">
+        <br />
+        <p class="pull-right">-- Dan Chay</p>
+        </div><!-- sig col -->
+        
+        </div><!-- body col -->
+        </div><!-- container -->
+        </div><!-- jumbotron -->
+    </div><!-- row -->
+    {% endblock %}
+    {% endblock %}

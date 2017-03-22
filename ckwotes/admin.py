@@ -9,12 +9,15 @@ class CkwoteAdmin(admin.ModelAdmin):
         verbose_name_plural = 'Quotes'
 
     list_display = ['id', 'short_ckwote', 'short_essence', 'author','publish_choice', 'circa', 'theme', 'tag', 'status']
+
     list_display_links = ['short_ckwote']
     ordering = ['theme', 'author', 'tag', 'status']
     list_editable = ['theme', 'tag']
     list_filter = ['author', 'theme', 'tag', 'status']
+
     search_fields = ['ckwote', 'tag', 'my_take']
     actions = ['make_published', 'make_draft', 'choose_ckwote', 'choose_m_take']
+
 
     def make_published(self, request, queryset):
         rows_updated = queryset.update(status='p')
@@ -57,3 +60,4 @@ class CkwoteAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Ckwote, CkwoteAdmin)
+
