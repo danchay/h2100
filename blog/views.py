@@ -66,6 +66,7 @@ def index(request):
         'category': category,
         'page_request_var': page_request_var,
         'popular_posts': get_popular_posts(),
+        'query': query,
 
 
     }
