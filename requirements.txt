@@ -14,7 +14,7 @@ gunicorn==19.7.0
 jmespath==0.9.2
 pyephem==3.7.6.0
 Pillow==4.0.0
-olefile=0.44
+olefile==0.44
 python-dateutil==2.6.0
 python-slugify==1.2.1
 s3transfer==0.1.10
