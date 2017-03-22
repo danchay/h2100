@@ -3,9 +3,9 @@ __pycache__/
 
 *.log
 
-h2_1/settings/pglocal.py
-h2_1/settings/sqlite.py
-h2_1/settings.py
+h2100/settings/pglocal.py
+h2100/settings/sqlite.py
+h2100/settings.py
 migrations/
 migrations/*
 
@@ -14,13 +14,14 @@ media
 .env
 Procfile.local
 old_settings.py
-h2_1.db
+h2100.db
 *.db
+db.*
 backups/*
 *.dump
 
-h2_1-project.sublime-project
-h2_1-project.sublime-workspace
+h2100-project.sublime-project
+h2100-project.sublime-workspace
 
 venv/
 

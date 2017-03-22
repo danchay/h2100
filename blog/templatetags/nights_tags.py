@@ -2,7 +2,7 @@ from django import template
 from datetime import *
 from django.template.defaultfilters import stringfilter
 from itertools import *
-from h2_1.utilities.moon.moon import fm_series, flmoons_since
+from h2100.utilities.moon.moon import fm_series, flmoons_since
 
 register = template.Library()
 

@@ -22,6 +22,7 @@ def index(request):
 
     category = 'Hacking to 100'
     date = ''
+    title =''
     for post in latest_posts:
         date = post.created.strftime('%a, %d %b %Y')
         post_id = post.id   

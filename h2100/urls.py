@@ -1,4 +1,4 @@
-# """h2_1 URL Configuration
+# """instance URL Configuration
 
 # The `urlpatterns` list routes URLs to views. For more information please see:
 #     https://docs.djangoproject.com/en/1.8/topics/http/urls/
@@ -59,7 +59,7 @@ if settings.DEBUG:
     urlpatterns += static(STATIC_URL, document_root=STATIC_ROOT)
     urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
 
-handler400 = 'h2_1.views.bad_request'
-handler403 = 'h2_1.views.permission_denied'
-handler404 = 'h2_1.views.page_not_found'
-handler500 = 'h2_1.views.server_error'
+handler400 = 'h2100.views.bad_request'
+handler403 = 'h2100.views.permission_denied'
+handler404 = 'h2100.views.page_not_found'
+handler500 = 'h2100.views.server_error'
