@@ -20,7 +20,7 @@
                         <span style="padding-left:20px;"><em><small>{{ date }}</small></em></span>
                     </p> 
 
-                    {% if instance.tease %}
+                    {% if instance.tease | safe %}
 
                         <!--<div  class="content-markdown">-->
                         <div class='post-item'>

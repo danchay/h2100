@@ -61,7 +61,7 @@
                                 
                                 <div class="post-item">
                                 <p>
-                                	{{ post.tease|truncatewords_html:40 }}
+                                	{{ post.tease|truncatewords_html:40 |safe }}
                                     <!--{ { post.get_markdown_preview|truncatewords_html:40 } }--><br />
                                 	
                                 </p>
