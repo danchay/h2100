@@ -1,10 +1,9 @@
 try:
-	from .production import *
+	from .base import *
 except:
 	pass
-
 try:
-	from .base import *
+	from .production import *
 except:
 	pass
 
