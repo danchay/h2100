@@ -23,7 +23,7 @@ def index(request):
     date = ''
     title =''
     for post in latest_posts:
-        date = post.created.strftime('%a, %d %b %Y')
+        date = post.publish.strftime('%a, %d %b %Y')
         post_id = post.id   
         title = post.title
         categories = post.display_categories()
@@ -78,7 +78,7 @@ def post(request, slug=None):
     instance.save()
     if instance.image:
         print(instance.image.url)
-    date = instance.created.strftime('%a, %d %b %Y')
+    date = instance.publish.strftime('%a, %d %b %Y')
     tags = instance.display_tags
     
     query = request.GET.get("q")
