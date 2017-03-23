@@ -50,7 +50,7 @@
                                 <h2><a href="/blog/{{ post.slug }}">{{ post.title }}</a></h2>
 
                                 <p>
-                                    <span style="padding-left:20px;"><em><small>{{ date }}</small></em></span>
+                                    <span style="padding-left:20px;"><em><small>{{ post.publish }}</small></em></span>
                                 </p>
                             {% if post.image %}
                                 <p>
@@ -126,28 +126,3 @@
 
 
 
-
-
-
-
-<!-- Working Variables -->
-<!-- Working Variables -->
-<!-- Working Variables -->
-{% for post in latest_posts %}
-<h1>{{post.title}}</h1>
-
-<br />
-{{ date }}<br />
- Tease: {{ post.tease }}
-  <br />
- Body: {{ post.body }}<br />
-
-
-  <br />
-  Tags: {{ post.display_tags }}
-
-<br />
-Categories:  {{ post.display_categories }} <br />
-
-Meta: {{ post.meta_description }}
-{% endfor %} 

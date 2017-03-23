@@ -20,13 +20,14 @@ def index(request):
     latest_posts = Post.objects.all().filter(status='p').order_by('-publish')[:10]
 
     category = 'Hacking to 100'
-    date = ''
     title =''
     for post in latest_posts:
-        date = post.publish.strftime('%a, %d %b %Y')
+        pub_date = post.publish.strftime('%a, %d %b %Y')
         post_id = post.id   
         title = post.title
         categories = post.display_categories()
+    
+
         tags = post.display_tags()
 
     paginator = Paginator(latest_posts, 3)
@@ -62,7 +63,6 @@ def index(request):
     context = {
         'latest_posts': queryset,
         'title': title,
-        'date': date,
         'category': category,
         'page_request_var': page_request_var,
         'popular_posts': get_popular_posts(),
@@ -78,7 +78,8 @@ def post(request, slug=None):
     instance.save()
     if instance.image:
         print(instance.image.url)
-    date = instance.publish.strftime('%a, %d %b %Y')
+    pub_date = instance.publish.strftime('%a, %d %b %Y')
+    
     tags = instance.display_tags
     
     query = request.GET.get("q")
@@ -111,7 +112,7 @@ def post(request, slug=None):
         context_dict = {
             'latest_posts': queryset,
             'popular_posts': get_popular_posts(),
-            'date': date,
+            'pub_date': pub_date,
             'category': category,
             'page_request_var': page_request_var,
             'query': query,
@@ -124,7 +125,7 @@ def post(request, slug=None):
         context_dict = {
             'instance': instance,
             'popular_posts': get_popular_posts(),
-            'date': date,
+            'pub_date': pub_date,
             'tags': tags,
         }
     return render(request, 'blog/post.html', context_dict)
@@ -141,7 +142,7 @@ def prepare_posts_by_category(request, category, *args, **kwargs):
     
     date = ''
     for post in latest_posts:
-        date = post.publish.strftime('%a, %d %b %Y')
+        pub_date = post.publish.strftime('%a, %d %b %Y')
     paginator = Paginator(latest_posts, 3)
 
     queryset_list = Post.objects.all().filter(status='p')
@@ -176,7 +177,7 @@ def prepare_posts_by_category(request, category, *args, **kwargs):
     context_dict = {
         'latest_posts': queryset,
         'popular_posts': get_popular_posts(),
-        'date': date,
+        'pub_date': pub_date,
         'category': category,
         'page_request_var': page_request_var,
         'query': query,
