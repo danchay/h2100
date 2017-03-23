@@ -141,7 +141,7 @@ def prepare_posts_by_category(request, category, *args, **kwargs):
     
     date = ''
     for post in latest_posts:
-        date = post.created.strftime('%a, %d %b %Y')
+        date = post.publish.strftime('%a, %d %b %Y')
     paginator = Paginator(latest_posts, 3)
 
     queryset_list = Post.objects.all().filter(status='p')
