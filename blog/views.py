@@ -17,10 +17,12 @@ def get_popular_posts():
     return popular_posts
 
 def index(request):
-    latest_posts = Post.objects.all().filter(status='p').order_by('-publish')[:10]
-
     category = 'Hacking to 100'
     title =''
+    pub_date = ''
+    latest_posts = Post.objects.all().filter(status='p').order_by('-publish')[:10]
+
+
     for post in latest_posts:
         pub_date = post.publish.strftime('%a, %d %b %Y')
         post_id = post.id   
@@ -63,7 +65,7 @@ def index(request):
     context = {
         'latest_posts': queryset,
         'title': title,
-        'category': category,
+        'categoriesory': category,
         'page_request_var': page_request_var,
         'popular_posts': get_popular_posts(),
         'query': query,
@@ -73,6 +75,7 @@ def index(request):
     return render(request, 'blog/index.html', context)
 
 def post(request, slug=None):
+    pub_date=''
     instance = get_object_or_404(Post, slug=slug)
     instance.visits +=1
     instance.save()
@@ -135,7 +138,7 @@ def prepare_posts_by_category(request, category, *args, **kwargs):
     Takes category and category abbreviation(cat), collects filtered list (by category, status=published, order, limit), and 
     returns template_name and context_dict in a tuple for view functions template rendering.
     '''
-
+    pub_date=''
     cat = Category.objects.get(title=category)
 
     latest_posts = Post.objects.all().filter(categories=cat).filter(status='p').order_by('-created')[:10]
