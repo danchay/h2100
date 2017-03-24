@@ -8,7 +8,7 @@ class CkwoteAdmin(admin.ModelAdmin):
         app_label = 'Quote'
         verbose_name_plural = 'Quotes'
 
-    list_display = ['id', 'short_ckwote', 'short_essence', 'author','publish_choice', 'circa', 'theme', 'tag', 'status']
+    list_display = ['id', 'short_ckwote', 'short_essence', 'author','publish_choice', 'status', 'circa', 'theme', 'tag']
 
     list_display_links = ['short_ckwote']
     ordering = ['theme', 'author', 'tag', 'status']

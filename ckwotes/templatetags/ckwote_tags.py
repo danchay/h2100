@@ -19,4 +19,3 @@ def ckwote():
 		ckwote=quote_list[0]
 
 	return ckwote
-

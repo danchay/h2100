@@ -65,7 +65,7 @@ def index(request):
     context = {
         'latest_posts': queryset,
         'title': title,
-        'categoriesory': category,
+        'category': category,
         'page_request_var': page_request_var,
         'popular_posts': get_popular_posts(),
         'query': query,
