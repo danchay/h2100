@@ -20,6 +20,7 @@ db.*
 db.sqlite3
 backups/*
 *.dump
+geckodriver.log
 
 h2100-project.sublime-project
 h2100-project.sublime-workspace
