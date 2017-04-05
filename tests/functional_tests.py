@@ -1,4 +1,6 @@
 from selenium import webdriver 
+from selenium.webdriver.common.keys import Keys 
+import time
 import unittest
 
 class NewVisitorTest(unittest.TestCase):
@@ -15,30 +17,73 @@ class NewVisitorTest(unittest.TestCase):
 
 		# She notices the page title
 		self.assertIn('H2100', self.browser.title)
-		self.fail('Finish the test.')
+		
+		# She notices the logo image
+		logo = self.browser.find_element_by_css_selector("img[src$='favicon-32x32.png'].navbar-brand")
+		self.assertTrue(logo)
 
-# She notice the logo image
+		# She notices 'Hacking to 100'
+		header_text = self.browser.find_element_by_tag_name('h1').text
+		self.assertIn('Hacking to 100', header_text)
 
-# She notices 'Hacking to 100'
+		# She notices '...xxxx days pending.' in the nav bar
+		# The string will be longer than 18 elements long if digits in number days > 2
+		days_pending = self.browser.find_element_by_xpath("//div[@class='navbar-header']/span[contains(text(), 'days pending.')]")
+		self.assertTrue(len(days_pending.text) > 18)
 
-# She notices '...xxxx days pending.' in the nav bar
+		# She notices a quotation at the top of the front page
+		ckwote = self.browser.find_element_by_tag_name('em').text 
+		self.assertTrue(ckwote.startswith('"'))
+		self.assertIn('"', ckwote)
+		self.assertTrue(len(ckwote) > 10)
 
-# She notices a quotation at the top of the front page
+		# She notices 'Most Popular Posts' w/ 5 links
+		mp_posts = self.browser.find_element_by_tag_name('h4').text 
+		self.assertIn('Most Popular Posts', mp_posts)
 
-# She is invited to search titles and tags in a search form
+		# She notices the Dan Chay email address
+		email = self.browser.find_element_by_tag_name('address').text 
+		self.assertIn('Dan Chay', email)
 
-# She notices 'Most Popular Posts' w/ 5 links
+		# She sees that there is a list of post items
+		posts = self.browser.find_elements_by_class_name('post-item')
+		self.assertTrue(len(posts) >= 1)
+		self.assertFalse(len(posts) >= 5)
 
-# She notices the Dan Chay email address
+		# She sees 'Page x of x. Next'
+		pages = self.browser.find_element_by_class_name('current').text
+		self.assertIn('Page', pages)
 
-# She sees that there is a list of post items
+		# She is invited to search titles and tags in a search form
+		search_input_box = self.browser.find_element_by_class_name('form-control')
+		self.assertEqual(search_input_box.get_attribute('placeholder'), 'Search in titles and tags')
 
-# She sees 'Page x of x. Next'
+		# She does a search on the first listed post
+		search_item = self.browser.find_element_by_xpath("//div[@class='col-md-8']/ul/h2/a")
+		self.assertTrue(search_item)
+		self.assertTrue(search_item.text)
+		search_item=search_item.text
+		search_input_box.send_keys(search_item)
+		search_input_box.send_keys(Keys.ENTER)
+		time.sleep(1)
+		new_header_text = self.browser.find_element_by_tag_name('h1').text
+		self.assertIn('Search Results', new_header_text)
+		self.assertTrue(search_item)
 
-# She does a search and it returns a list of posts
+		# She clicks on a post title and it returns a single post with Tag:
+		post_title = search_item
+		post_title_link = self.browser.find_element_by_link_text(post_title)
+		post_title_link.click()
+		time.sleep(1)
 
-# She clicks on a post title and it returns a single post
+		tag = self.browser.find_element_by_css_selector("p.pull-right").text
+		self.assertIn('Tag:', tag)
 
+
+
+
+
+		# self.fail('Finish the test.')
 
 if __name__ == '__main__':
 	unittest.main()
