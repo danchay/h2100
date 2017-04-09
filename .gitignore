@@ -16,8 +16,8 @@ Procfile.local
 old_settings.py
 h2100.db
 *.db
-db.*
-db.sqlite3
+#db.*
+#db.sqlite3
 backups/*
 *.dump
 geckodriver.log
