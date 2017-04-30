@@ -36,7 +36,7 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     slug = AutoSlugField(populate_from ='title')
     author = models.ForeignKey(User, blank=True, null=True)
-    author_alias = models.CharField(max_length=100, blank=True, null=True)
+    author_alias = models.CharField(max_length=100, blank=True, null=True, help_text='Ex me ipsa (Out of myself)')    
     tease = models.TextField(blank=True)
     body = models.TextField()
     image = models.ImageField(upload_to=upload_location, 
