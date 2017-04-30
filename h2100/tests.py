@@ -2,6 +2,9 @@ from django.test import TestCase
 from django.core.urlresolvers import resolve
 from django.http import HttpRequest
 from django.template.loader import render_to_string
+from django.core.urlresolvers import reverse
+
+import time
 
 from .views import about
 from blog.models import Post
@@ -30,9 +33,11 @@ class AboutPageTest(TestCase):
 
 
 
-		# # request = HttpRequest()
-		# # response = about(request)
-		response = self.client.get('/about-this-site/')
+		# request = HttpRequest()
+		# response = about(request)
+		url = reverse('about')
+		response = self.client.get(url)
+		self.assertEqual(response.status_code, 200)
 
 		# # # html = response.content.decode('utf8')
 		# # # # self.assertIn('<html lang="en">', html)
@@ -41,7 +46,7 @@ class AboutPageTest(TestCase):
 		# # # # self.assertIn('</html>', html)
 		# # # self.assertIn('<h1>About this site</h1>', html)
 		# # # self.assertTrue(html.strip().endswith('</html>'))
-		self.assertTemplateUsed(response, 'about.html')
+		#self.assertTemplateUsed(response, 'about.html')
 
 
 # class SmokeTest(TestCase):
