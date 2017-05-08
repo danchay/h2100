@@ -15,12 +15,12 @@ PUBLISH_CHOICES = (
 
 class Ckwote(models.Model):
     ckwote = models.TextField(help_text='Exclude quotation marks.')
-    author = models.CharField(max_length=150, blank=True, null=True, help_text='Use "Unknown" or "Anonymous" or "Ex me ipso" (Out of myself) as appropriate.')
+    author = models.CharField(max_length=150, blank=True, null=True, help_text='Use "Unknown" or "Anonymous" or "Ex me ips" (Out of myself) as appropriate.')
     circa = models.CharField(max_length=150, blank=True, null=True)
     source = models.TextField(blank=True, null=True, help_text='Citation format.')
     source_url = models.URLField(blank=True, null=True)
     my_take = models.TextField(blank=True, null=True)
-    m_author = models.CharField(max_length=150, blank=True, null=True, help_text='Ex me ipsa')
+    m_author = models.CharField(max_length=150, blank=True, null=True, help_text='Ex me ipsa (Out of myself)')
     publish_choice = models.CharField(max_length=1, choices=PUBLISH_CHOICES, default='Ckwote')
     added_date = models.DateTimeField(auto_now_add=True, auto_now=False)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='Draft')

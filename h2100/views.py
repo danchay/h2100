@@ -25,6 +25,9 @@ def get_popular_posts():
 
 def about(request, slug=None):
     instance = get_object_or_404(Post, slug='about-this-site')
+    if instance.status == 'd':
+        messages.info(request, 'The about-this-site page is in draft state.')
+        return redirect('index')
     instance.visits +=1
     instance.save()
     if instance.image:
