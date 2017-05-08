@@ -7,7 +7,7 @@ SECRET_KEY=os.environ['SECRET_KEY']
 
 
 
-ALLOWED_HOSTS = ['hackingto100.com', 'www.hackingto100.com', 'h2100.herokuapp.com']
+ALLOWED_HOSTS = ['hackingto100.com', 'www.hackingto100.com', 'h2100.herokuapp.com', 'h2100-staging.herokuapp.com' ]
 
 
 ROOT_URLCONF = 'h2100.urls'
